@@ -11,7 +11,7 @@ class Tower{
 public:
 	Tower(int x, int y);
 	void Draw();
-	void update(float time);
+	void update(float time, SDL_Event e);
 	SDL_Texture* loadTexture(std::string path, SDL_Renderer* gRenderer);
 private:
 	SDL_Texture* text;

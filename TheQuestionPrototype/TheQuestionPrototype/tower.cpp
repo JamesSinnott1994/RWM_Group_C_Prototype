@@ -64,7 +64,7 @@ void Tower::Draw()
 
 	}
 }
-void Tower::update(float time)
+void Tower::update(float time , SDL_Event e)
 {
 	timeSinceAttack += time;
 	if (timeSinceAttack >= 1)
