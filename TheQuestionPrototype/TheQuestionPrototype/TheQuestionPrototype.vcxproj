@@ -79,12 +79,14 @@
     <ClCompile Include="Renderer.cpp" />
     <ClCompile Include="Source.cpp" />
     <ClCompile Include="Sprite.cpp" />
+    <ClCompile Include="StormWarning.cpp" />
     <ClCompile Include="tower.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="KeyBoardInput.h" />
     <ClInclude Include="Renderer.h" />
     <ClInclude Include="Sprite.h" />
+    <ClInclude Include="StormWarning.h" />
     <ClInclude Include="Tower.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

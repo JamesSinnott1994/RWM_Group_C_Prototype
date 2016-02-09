@@ -6,6 +6,7 @@ using namespace std;
 
 #include "Renderer.h"
 #include "KeyBoardInput.h"
+#include "StormWarning.h"
 #include "Tower.h"
 #include <list>
 
@@ -51,7 +52,8 @@ int main()
 			SDL_Event e;
 
 			// Timing variables
-			Uint32 old_time, current_time;
+			Uint32 old_time;
+			Uint32 current_time = 0;
 			float ftime;//time between frames
 
 			while (!quit)
@@ -59,10 +61,11 @@ int main()
 				// Update the timing information
 				old_time = current_time;
 				current_time = SDL_GetTicks();
-				ftime = (current_time - old_time) / 1000.0f;
+				ftime = (current_time - old_time) / 1000.0f;// Seconds
 				//cout << ftime << endl;
 
-				while (SDL_PollEvent(&e) != 0){
+				while (SDL_PollEvent(&e) != 0)
+				{
 					KeyBoardInput::GetInstance()->updateKeyboard(e);
 					switch (e.type)
 					{
@@ -73,6 +76,7 @@ int main()
 					}
 				}
 				//update 
+				StormWarning::GetInstance()->Update(ftime);
 
 				//draw
 				Renderer::GetInstance()->ClearRenderer();
