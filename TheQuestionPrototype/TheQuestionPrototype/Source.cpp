@@ -8,6 +8,7 @@ using namespace std;
 #include "KeyBoardInput.h"
 #include "TowerManager.h"
 #include "Base.h"
+#include "StormWarning.h"
 #include <list>
 
 //Screen dimension constants
@@ -63,10 +64,11 @@ int main()
 				// Update the timing information
 				old_time = current_time;
 				current_time = SDL_GetTicks();
-				ftime = (current_time - old_time) / 1000.0f;
+				ftime = (current_time - old_time) / 1000.0f;// Seconds
 				//cout << ftime << endl;
 
-				while (SDL_PollEvent(&e) != 0){
+				while (SDL_PollEvent(&e) != 0)
+				{
 					KeyBoardInput::GetInstance()->updateKeyboard(e);
 					switch (e.type)
 					{
@@ -89,6 +91,7 @@ int main()
 					}
 				}
 				//update 
+				StormWarning::GetInstance()->Update(ftime);
 
 				//draw
 				Renderer::GetInstance()->ClearRenderer();
