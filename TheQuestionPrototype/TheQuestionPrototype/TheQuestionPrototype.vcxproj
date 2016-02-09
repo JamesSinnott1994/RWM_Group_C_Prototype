@@ -75,6 +75,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Base.cpp" />
     <ClCompile Include="KeyBoardInput.cpp" />
     <ClCompile Include="Renderer.cpp" />
     <ClCompile Include="Source.cpp" />
@@ -83,6 +84,7 @@
     <ClCompile Include="TowerManager.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Base.h" />
     <ClInclude Include="KeyBoardInput.h" />
     <ClInclude Include="Renderer.h" />
     <ClInclude Include="Sprite.h" />

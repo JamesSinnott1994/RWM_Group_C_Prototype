@@ -7,6 +7,7 @@ using namespace std;
 #include "Renderer.h"
 #include "KeyBoardInput.h"
 #include "TowerManager.h"
+#include "Base.h"
 #include <list>
 
 //Screen dimension constants
@@ -45,6 +46,8 @@ int main()
 
 			TowerManager::GetInstance()->addTower(1, 100, 100);
 
+			Base::GetInstance()->Init(SCREEN_WIDTH, SCREEN_HEIGHT);
+
 
 			bool quit = false;
 			SDL_Event e;
@@ -56,6 +59,7 @@ int main()
 
 			while (!quit)
 			{
+
 				// Update the timing information
 				old_time = current_time;
 				current_time = SDL_GetTicks();
@@ -71,6 +75,18 @@ int main()
 						break;
 
 					}
+					//If a mouse button was pressed
+					if (e.type == SDL_MOUSEBUTTONDOWN)
+					{
+						//If the left mouse button was pressed
+						if (e.button.button == SDL_BUTTON_LEFT)
+						{
+							if (e.button.x > Base::GetInstance()->getRect().x && e.button.x < Base::GetInstance()->getRect().w + Base::GetInstance()->getRect().x &&
+								e.button.y > Base::GetInstance()->getRect().y && e.button.y < Base::GetInstance()->getRect().h + Base::GetInstance()->getRect().y) {
+								Base::GetInstance()->createMinion();
+							}
+						}
+					}
 				}
 				//update 
 
@@ -78,6 +94,8 @@ int main()
 				Renderer::GetInstance()->ClearRenderer();
 
 				TowerManager::GetInstance()->Draw();
+
+				Base::GetInstance()->Draw();
 
 				Renderer::GetInstance()->RenderScreen();
 
