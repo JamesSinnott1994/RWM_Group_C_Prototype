@@ -6,7 +6,7 @@ using namespace std;
 
 #include "Renderer.h"
 #include "KeyBoardInput.h"
-#include "Tower.h"
+#include "TowerManager.h"
 #include <list>
 
 //Screen dimension constants
@@ -41,17 +41,17 @@ int main()
 			{
 				return 0;
 			}
-			list<Tower*> towers;
-			for (int i = 0; i < 10; i++)
-			{
-				towers.push_back(new Tower(i * 100, 100));
-			}
+			
+
+			TowerManager::GetInstance()->addTower(1, 100, 100);
+
 
 			bool quit = false;
 			SDL_Event e;
 
 			// Timing variables
 			Uint32 old_time, current_time;
+			current_time = SDL_GetTicks();
 			float ftime;//time between frames
 
 			while (!quit)
@@ -77,11 +77,7 @@ int main()
 				//draw
 				Renderer::GetInstance()->ClearRenderer();
 
-				/*Call Draw on objects here*/
-				for each(Tower * t in towers)
-				{
-					t->Draw();
-				}
+				TowerManager::GetInstance()->Draw();
 
 				Renderer::GetInstance()->RenderScreen();
 
