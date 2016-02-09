@@ -49,8 +49,19 @@ int main()
 
 			bool quit = false;
 			SDL_Event e;
+
+			// Timing variables
+			Uint32 old_time, current_time;
+			float ftime;//time between frames
+
 			while (!quit)
 			{
+				// Update the timing information
+				old_time = current_time;
+				current_time = SDL_GetTicks();
+				ftime = (current_time - old_time) / 1000.0f;
+				//cout << ftime << endl;
+
 				while (SDL_PollEvent(&e) != 0){
 					KeyBoardInput::GetInstance()->updateKeyboard(e);
 					switch (e.type)
