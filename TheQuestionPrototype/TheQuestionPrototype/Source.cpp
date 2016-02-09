@@ -7,6 +7,7 @@ using namespace std;
 #include "Renderer.h"
 #include "KeyBoardInput.h"
 #include "Tower.h"
+#include "Base.h"
 #include <list>
 
 //Screen dimension constants
@@ -41,6 +42,8 @@ int main()
 			{
 				return 0;
 			}
+			Base::GetInstance()->Init(SCREEN_WIDTH, SCREEN_HEIGHT);
+
 			list<Tower*> towers;
 			for (int i = 0; i < 10; i++)
 			{
@@ -51,11 +54,13 @@ int main()
 			SDL_Event e;
 
 			// Timing variables
-			Uint32 old_time, current_time;
+			Uint32 old_time;
+			Uint32 current_time = 0;
 			float ftime;//time between frames
 
 			while (!quit)
 			{
+
 				// Update the timing information
 				old_time = current_time;
 				current_time = SDL_GetTicks();
@@ -71,6 +76,18 @@ int main()
 						break;
 
 					}
+					//If a mouse button was pressed
+					if (e.type == SDL_MOUSEBUTTONDOWN)
+					{
+						//If the left mouse button was pressed
+						if (e.button.button == SDL_BUTTON_LEFT)
+						{
+							if (e.button.x > Base::GetInstance()->getRect().x && e.button.x < Base::GetInstance()->getRect().w + Base::GetInstance()->getRect().x &&
+								e.button.y > Base::GetInstance()->getRect().y && e.button.y < Base::GetInstance()->getRect().h + Base::GetInstance()->getRect().y) {
+								Base::GetInstance()->createMinion();
+							}
+						}
+					}
 				}
 				//update 
 
@@ -82,6 +99,8 @@ int main()
 				{
 					t->Draw();
 				}
+
+				Base::GetInstance()->Draw();
 
 				Renderer::GetInstance()->RenderScreen();
 
