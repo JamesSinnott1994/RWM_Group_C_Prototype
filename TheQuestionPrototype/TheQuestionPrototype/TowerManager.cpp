@@ -47,4 +47,35 @@ void TowerManager::Draw()
 }
 void TowerManager::Update(float time)
 {
+
+	for each(Tower * t in Team_1_towers)
+	{
+		t->update(time);
+	}
+	for each(Tower * t in Team_2_towers)
+	{
+		t->update(time);
+	}
+}
+void TowerManager::mouseClicked(SDL_Point mouse)
+{
+	for each(Tower * t in Team_1_towers)
+	{
+		t->mouseClicked(mouse);
+	}
+	for each(Tower * t in Team_2_towers)
+	{
+		t->mouseClicked(mouse);
+	}
+}
+void TowerManager::DisasterOccured(int type)
+{
+	for each(Tower * t in Team_1_towers)
+	{
+		t->Disaster(type);
+	}
+	for each(Tower * t in Team_2_towers)
+	{
+		t->Disaster(type);
+	}
 }

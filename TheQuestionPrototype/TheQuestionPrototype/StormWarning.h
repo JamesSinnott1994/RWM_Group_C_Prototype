@@ -6,6 +6,9 @@
 #include <cmath>
 #include <fstream>
 
+#include <stdlib.h>     /* srand, rand */
+#include <time.h>       /* time */
+
 class StormWarning
 {
 private:
@@ -15,10 +18,16 @@ private:
 	float secondsPassed;
 	const int countdown = 0;
 	bool disasterToOccur;
+	float timeToDisaster;
+	int disasterType;
+	float onSecond;
 
 	StormWarning::StormWarning()
 	{
 		secondsPassed = 0;
+		disasterToOccur = false;
+		disasterType = 1;
+		onSecond = 0;
 	}
 
 public:
@@ -26,7 +35,7 @@ public:
 	~StormWarning()
 	{
 		instanceFlag = false;
-		disasterToOccur = false;
+		
 	}
 
 	void Init();

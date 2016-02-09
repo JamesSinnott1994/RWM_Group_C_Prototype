@@ -28,6 +28,8 @@ public:
 	void addTower(int team, float x, float y);
 	void Draw();
 	void Update(float time);
+	void mouseClicked(SDL_Point mouse);
+	void DisasterOccured(int type);
 	
 };
 #endif

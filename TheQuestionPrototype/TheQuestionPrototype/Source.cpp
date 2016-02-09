@@ -87,6 +87,9 @@ int main()
 								e.button.y > Base::GetInstance()->getRect().y && e.button.y < Base::GetInstance()->getRect().h + Base::GetInstance()->getRect().y) {
 								Base::GetInstance()->createMinion();
 							}
+							SDL_Point mouse = { e.button.x, e.button.y};
+
+							TowerManager::GetInstance()->mouseClicked(mouse);
 						}
 					}
 				}

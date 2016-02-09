@@ -1,4 +1,5 @@
 #include "StormWarning.h"
+#include "TowerManager.h"
 
 bool StormWarning::instanceFlag = false;
 StormWarning* StormWarning::instance = NULL;
@@ -24,17 +25,47 @@ void StormWarning::Update(float ftime)
 
 	if (secondsPassed >= 5)
 	{
-		std::cout << "A natural disaster is about to occur!" << std::endl;
+		disasterType = rand()% 4 + 1;
+		string type = "type";
+		if (disasterType == 1)
+		{
+			type = "Storm";
+		}
+		else if (disasterType == 2)
+		{
+			type = "Volcano";
+		}
+		else if (disasterType == 3)
+		{
+			type = "Flood";
+		}
+		else if (disasterType == 4)
+		{
+			type = "Earthquake";
+		}
+		std::cout << "A natural disaster is about to occur! : " << type << std::endl;
 		secondsPassed = 0;
 		disasterToOccur = true;
+		timeToDisaster = 10;
 	}
-
 	if (disasterToOccur)
 	{
-		std::cout << "Disaster occuring in" << std::endl;
-		for (int i = 10; i > 0; i--){
-			std::cout << i << std::endl;
+		timeToDisaster -= ftime;
+
+		if (timeToDisaster >= 0)
+		{
+			onSecond += ftime;
+			if (onSecond >= 1)
+			{
+				std::cout << " Disaster in " << timeToDisaster << std::endl;
+				onSecond = 0;
+			}
 		}
-		disasterToOccur = false;
+		else
+		{
+			std::cout << "Disaster occuring" << std::endl;
+			TowerManager::GetInstance()->DisasterOccured(disasterType);
+			disasterToOccur = false;
+		}
 	}
 }

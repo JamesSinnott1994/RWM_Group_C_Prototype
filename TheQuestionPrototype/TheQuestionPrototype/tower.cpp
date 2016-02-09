@@ -14,11 +14,13 @@ Tower::Tower(int x, int y )
 		eathq = loadTexture("earthqImage.png", Renderer::GetInstance()->Get_SDL_RENDERER());
 		health = 100;
 		timeSinceAttack = 0;
-		displayStats = true;
+		displayStats = false;
 		stormProof = false;
 		volcanoProof = false;
 		floodProof = false;
 		earthquakeProof = false;
+		last_mouse_clicked_time = SDL_GetTicks();
+
 }
 
 void Tower::Draw()
@@ -64,7 +66,7 @@ void Tower::Draw()
 
 	}
 }
-void Tower::update(float time , SDL_Event e)
+void Tower::update(float time)
 {
 	timeSinceAttack += time;
 	if (timeSinceAttack >= 1)
@@ -115,4 +117,39 @@ SDL_Texture* Tower::loadTexture(std::string path, SDL_Renderer* gRenderer){
 		SDL_FreeSurface(loadedSurface);
 	}
 	return newTexture;
+}
+
+void Tower::mouseClicked(SDL_Point mouse)
+{
+	
+		if (mouse.x < dest.x + dest.w && mouse.x > dest.x
+			&&mouse.y < dest.y + dest.h && mouse.y > dest.y)
+		{
+			displayStats = !displayStats;
+		}
+		else if (!stormProof &&
+			mouse.x < dest.x +45 && mouse.x > dest.x + 25
+			&&mouse.y < dest.y + 40 && mouse.y > dest.y +20)
+		{
+			stormProof = true;
+		}
+		else if (!volcanoProof &&
+			mouse.x < dest.x + 75 && mouse.x > dest.x + 50
+			&& mouse.y < dest.y + 40 && mouse.y > dest.y + 20)
+		{
+			volcanoProof = true;
+		}
+		else if (!floodProof &&
+			mouse.x < dest.x + 95 && mouse.x > dest.x + 75
+			&& mouse.y < dest.y + 40 && mouse.y > dest.y + 20)
+		{
+			floodProof = true;
+		}
+		else if (!earthquakeProof &&
+			mouse.x < dest.x + 125 && mouse.x > dest.x + 100
+			&& mouse.y < dest.y + 40 && mouse.y > dest.y + 20)
+		{
+			earthquakeProof = true;
+		}
+
 }
