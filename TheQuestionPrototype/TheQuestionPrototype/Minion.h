@@ -15,6 +15,8 @@ public:
 	bool getSelected() { return m_selected; }
 	void Attack();
 	void WeatherEffect();
+
+	SDL_Rect getRect();
 	
 
 private:

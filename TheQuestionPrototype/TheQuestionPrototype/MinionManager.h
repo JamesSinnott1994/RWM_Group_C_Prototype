@@ -26,6 +26,8 @@ public:
 	void Selected(int mouseX, int mouseY);
 	static const int REDTEAM = 0, BLUETEAM = 1;
 
+	std::list<Minion*>* ReturnMinions();
+
 private:
 	MinionManager()
 	{

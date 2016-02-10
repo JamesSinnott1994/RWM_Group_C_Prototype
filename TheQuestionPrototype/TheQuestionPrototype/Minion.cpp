@@ -117,3 +117,8 @@ void Minion::Selected(int mouseX, int mouseY)
 		
 		}	
 }
+
+SDL_Rect Minion::getRect()
+{
+	return dest;
+}
