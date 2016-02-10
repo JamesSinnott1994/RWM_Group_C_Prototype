@@ -2,6 +2,7 @@
 #include "Renderer.h"
 #include <SDL_image.h>
 #include "GoldManager.h"
+#include "BaseManager.h"
 
 Minion::Minion(int x, int y, int teamColour) : m_x(x), m_y(y), m_team(teamColour) {
 	m_width = 50;
@@ -86,6 +87,7 @@ void Minion::Update(int mouseX, int mouseY, float t) {
 
 		if (timeSinceAttack >= m_attackSpeed){
 			TowerManager::GetInstance()->attackTurret(m_team, 10, SDL_Rect{m_x, m_y, dest.w, dest.h} );
+			BaseManager::GetInstance()->attackBase(m_team, 10, SDL_Rect{ m_x, m_y, dest.w, dest.h });
 			timeSinceAttack = 0;
 		}
 	}

@@ -5,9 +5,7 @@
 #include <iostream>
 using namespace std;
 
-
-class BaseManager
-{
+class BaseManager {
 private:
 
 	Base* team1;
@@ -16,10 +14,9 @@ private:
 	static bool instanceFlag;
 	static BaseManager* instance;
 	BaseManager(){}
-
 public:
-
 	static BaseManager* GetInstance();
+	void attackBase(int team, int damage, SDL_Rect minionPos);
 	~BaseManager()
 	{
 		delete instance;
@@ -27,11 +24,8 @@ public:
 	}
 	SDL_Rect getRect1();
 	SDL_Rect getRect2();
-
 	void Draw();
 	void Update(float time);
 	void Init();
-
-
 };
 #endif

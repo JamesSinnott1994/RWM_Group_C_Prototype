@@ -13,16 +13,16 @@ Base::Base(SDL_Point pos, int team )
 	}
 }
 
-
-
-void Base::Update()
-{
-
+void Base::Update() {
+	if (health <= 0){
+		std::cout << "Base" << m_team << " is dead!!!" << std::endl;
+	}
 }
 
 void Base::Draw()
 {
-	Renderer::GetInstance()->DrawImageNoOffset(&src, &dest, text, 0, &offset);
+	if (health > 0)
+		Renderer::GetInstance()->DrawImageNoOffset(&src, &dest, text, 0, &offset);
 }
 
 SDL_Texture* Base::loadTexture(std::string path, SDL_Renderer* gRenderer){
@@ -62,4 +62,22 @@ int Base::getHealth(){
 
 void Base::setHealth(int pHealth){
 	health = pHealth;
+}
+
+void Base::doDamage(int damage){
+	health -= damage;
+}
+
+bool Base::colliding(SDL_Rect pos, int rad) {
+	SDL_Point m_pos = { dest.x + dest.w / 2, dest.y - dest.h / 2 };
+	SDL_Point minion_pos = { pos.x + pos.w / 2, pos.y - pos.h / 2 };
+
+	SDL_Point direction = { m_pos.x - minion_pos.x, m_pos.y - minion_pos.y };
+	float length = sqrt(direction.x*direction.x + direction.y*direction.y);
+
+	if (length < rad)
+	{
+		return true;
+	}
+	return false;
 }

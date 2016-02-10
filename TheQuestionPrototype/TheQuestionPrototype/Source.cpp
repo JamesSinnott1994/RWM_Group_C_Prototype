@@ -123,7 +123,7 @@ int main() {
 									buildTower1 = false;
 								}
 							}
-							if (TowerManager::GetInstance()->mouseClicked({x,y}))
+							if (TowerManager::GetInstance()->mouseClicked({ e.button.x, e.button.y }))
 							{
 								TowerManager::GetInstance()->TeamsOneMinions -= 1;
 								for each(Minion * minion in *MinionManager::GetInstance()->ReturnMinionsTeam1()) {
@@ -201,7 +201,7 @@ int main() {
 				StormWarning::GetInstance()->Update(ftime);
 				TowerManager::GetInstance()->Update(ftime);
 				playertwo::GetInstance()->Update();
-
+				BaseManager::GetInstance()->Update(ftime);
 				//Put Minions into their turrets
 				for each(Minion * minion in *MinionManager::GetInstance()->ReturnMinionsTeam1()) {
 					if (TowerManager::GetInstance()->collidingWithTower(minion->getRect(), 1) && !minion->InTower) {

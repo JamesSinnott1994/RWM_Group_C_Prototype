@@ -30,7 +30,20 @@ void BaseManager::Draw()
 }
 void BaseManager::Update(float time)
 {
-
+	team1->Update();
+	team2->Update();
+}
+void BaseManager::attackBase(int team, int damage, SDL_Rect minionPos){
+	if (team == 2) {
+		if (team1->colliding(minionPos, 150)){
+			team1->doDamage(damage);
+		}
+	}
+	if (team == 1) {
+		if (team2->colliding(minionPos, 150)){
+			team2->doDamage(damage);
+		}
+	}
 }
 
 SDL_Rect BaseManager::getRect1()

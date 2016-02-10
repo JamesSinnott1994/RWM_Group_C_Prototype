@@ -33,9 +33,10 @@ public:
 	void Init(int width, int height);
 	void Update();
 	void Draw();
+	void doDamage(int damage);
 	SDL_Rect getRect();
 	void createMinion();
-
+	bool colliding(SDL_Rect pos, int rad);
 	SDL_Texture* loadTexture(std::string path, SDL_Renderer* gRenderer);
 };
 

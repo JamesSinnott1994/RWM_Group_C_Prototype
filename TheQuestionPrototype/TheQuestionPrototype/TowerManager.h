@@ -17,7 +17,7 @@ private:
 	list<Tower*> Team_2_towers;
 public:
 	static TowerManager* GetInstance();
-	void TowerManager::attackTurret(int team, int damage, SDL_Rect minionPos);
+	void attackTurret(int team, int damage, SDL_Rect minionPos);
 	~TowerManager()
 	{
 		delete instance;
