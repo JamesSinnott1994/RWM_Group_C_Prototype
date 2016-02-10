@@ -20,7 +20,7 @@ public:
 	void setRect(SDL_Rect);
 	
 	void Disaster(int);
-	bool colliding(SDL_Rect pos);
+	bool colliding(SDL_Rect pos, int rad);
 	void doDamage(int dmg);
 	bool isAlive(){ return m_alive; }
 

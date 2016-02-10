@@ -79,18 +79,22 @@ void TowerManager::Update(float time)
 }
 bool TowerManager::mouseClicked(SDL_Point mouse)
 {
+	bool temp = false;
 	for each(Tower * t in Team_1_towers)
 	{
-		return t->mouseClicked(mouse, TeamsOneMinions);
+		temp =  t->mouseClicked(mouse, TeamsOneMinions);
 	}
+	return temp;
 
 }
 bool TowerManager::KeyBoardClicked(SDL_Point mouse)
 {
+	bool temp = false;
 	for each(Tower * t in Team_2_towers)
 	{
-		return t->mouseClicked(mouse, TeamsTwoMinions);
+		temp = t->mouseClicked(mouse, TeamsTwoMinions);
 	}
+	return temp;
 }
 void TowerManager::DisasterOccured(int type)
 {

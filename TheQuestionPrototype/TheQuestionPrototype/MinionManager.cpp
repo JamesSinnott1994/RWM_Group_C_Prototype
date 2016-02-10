@@ -116,7 +116,7 @@ void MinionManager::attackMinion(int team, int damage, SDL_Rect towerpos)
 	{
 		for each  (Minion* minion in minions_Team2){
 
-			if (minion->colliding(towerpos))
+			if (minion->colliding(towerpos,150))
 			{
 				minion->doDamage(damage);
 				break;
@@ -127,7 +127,7 @@ void MinionManager::attackMinion(int team, int damage, SDL_Rect towerpos)
 	{
 		for each  (Minion* minion in minions_Team1){
 
-			if (minion->colliding(towerpos))
+			if (minion->colliding(towerpos,150))
 			{
 				minion->doDamage(damage);
 				break;

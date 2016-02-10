@@ -177,10 +177,15 @@ void Minion::Disaster(int identifier)
 	}
 }
 
-bool Minion::colliding(SDL_Rect pos)
+bool Minion::colliding(SDL_Rect pos , int rad)
 {
-	if (dest.x < pos.x + pos.w && dest.x + dest.w > pos.x
-		&& dest.y < pos.y + pos.h && dest.y + dest.h > pos.y)
+	SDL_Point m_pos = { dest.x + dest.w / 2, dest.y - dest.h / 2 };
+	SDL_Point tower_pos = { pos.x + pos.w / 2, pos.y - pos.h / 2 };
+
+	SDL_Point direction = { m_pos.x - tower_pos.x, m_pos.y - tower_pos.y };
+	float length = sqrt(direction.x*direction.x + direction.y*direction.y);
+
+	if (length < rad)
 	{
 		return true;
 	}

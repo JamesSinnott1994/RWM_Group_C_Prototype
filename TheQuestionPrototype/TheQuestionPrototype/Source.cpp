@@ -61,9 +61,11 @@ int main()
 			MinionManager::GetInstance()->addMinion(700, 300, 2);
 			MinionManager::GetInstance()->addMinion(700, 500, 2);
 
-			TowerManager::GetInstance()->addTower(1, 100, 100);
+			TowerManager::GetInstance()->addTower(1, 474, 100);
+			TowerManager::GetInstance()->addTower(1, 774, 100);
 
-			TowerManager::GetInstance()->addTower(2, 400, 400);
+			TowerManager::GetInstance()->addTower(2, 474, 400);
+			TowerManager::GetInstance()->addTower(2, 774, 400);
 			BaseManager::GetInstance()->Init();
 
 			playertwo::GetInstance()->Init();
@@ -211,10 +213,10 @@ int main()
 				Renderer::GetInstance()->ClearRenderer();
 
 				
-				
+				BaseManager::GetInstance()->Draw();
 				TowerManager::GetInstance()->Draw();
 
-				BaseManager::GetInstance()->Draw();
+				
 				MinionManager::GetInstance()->Draw();
 				playertwo::GetInstance()->Draw();
 				Renderer::GetInstance()->RenderScreen();

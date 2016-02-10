@@ -28,6 +28,7 @@ private:
 	SDL_Texture* volcano;
 	SDL_Texture* flood;
 	SDL_Texture* eathq;
+	SDL_Texture* radius;
 	SDL_Rect src, dest;
 	SDL_Point offset;
 	Uint32 last_mouse_clicked_time;

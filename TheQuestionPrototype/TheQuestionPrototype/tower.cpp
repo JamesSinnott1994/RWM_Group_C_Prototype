@@ -18,6 +18,7 @@ Tower::Tower(int x, int y , int team)
 		volcano = loadTexture("volcanoImage.png", Renderer::GetInstance()->Get_SDL_RENDERER());
 		flood = loadTexture("floodImage.png", Renderer::GetInstance()->Get_SDL_RENDERER());
 		eathq = loadTexture("earthqImage.png", Renderer::GetInstance()->Get_SDL_RENDERER());
+		radius = loadTexture("radius.png", Renderer::GetInstance()->Get_SDL_RENDERER());
 		health = 100;
 		timeSinceAttack = 0;
 		displayStats = false;
@@ -37,12 +38,21 @@ void Tower::Draw(int noOfMinions, int team)
 		NoOfTeam1Minions = noOfMinions;
 	else
 		NoOfTeam2Minions = noOfMinions;
+	SDL_Rect src1, dest1;
+	src1 = { 0, 0, 300, 300 };
+	if (m_team == 2)
+	{
+		src1 = { 300, 0, 300, 300 };
+	}
+	dest1 = { dest.x - 125, dest.y -100, 300, 300 };
+	Renderer::GetInstance()->DrawImageNoOffset(&src1, &dest1, radius, 0, &offset);
+
 
 	if (displayStats)
 	{
 		SDL_Rect src3, dest3;
 		SDL_Rect src2, dest2;
-		SDL_Rect src1, dest1;
+		
 		src1 = {0,0,105,50};
 		src2 = { 0, 0, 105, 50 };
 		dest1 = { dest.x + 20, dest.y, 105, 100 };
@@ -79,6 +89,8 @@ void Tower::Draw(int noOfMinions, int team)
 			dest1 = { dest.x + 100, dest.y + 20, 20, 20 };
 			Renderer::GetInstance()->DrawImageNoOffset(&src1, &dest1, eathq, 0, &offset);
 		}
+		
+	
 
 		rect = dest;
 		rect.x += 0;
