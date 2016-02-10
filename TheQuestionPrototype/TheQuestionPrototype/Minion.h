@@ -2,6 +2,9 @@
 
 #include <iostream>
 #include <SDL.h>
+#include "Renderer.h"
+#include <SDL_image.h>
+#include "TowerManager.h"
 
 class Minion
 {
@@ -32,7 +35,7 @@ private:
 	SDL_Texture* healthBar;
 	SDL_Rect src, dest;
 	SDL_Point offset;
-	int team;
+	int m_team;
 	float m_moveSpeed;
 	float m_attackSpeed;
 	float m_attackPower;
@@ -44,6 +47,7 @@ private:
 	bool m_selectCheck;
 	bool recentlyMoved;
 	float time;
+	float timeSinceAttack;
 	//methods
 	void Move(int, int);
 

@@ -20,8 +20,7 @@ const int SCREEN_WIDTH = 1248;			//SDL
 const int SCREEN_HEIGHT = 704;			//SDL
 
 
-int main()
-{
+int main() {
 	//The window we'll be rendering to
 	SDL_Window* window = NULL;
 	int x = 0, y = 0;
@@ -32,26 +31,19 @@ int main()
 	bool buildTower1 = false, buildTower2 = false;
 	
 
-	//SDL
-#pragma region SDL STUFF
 	//Initialize SDL
-	if (SDL_Init(SDL_INIT_VIDEO) < 0)
-	{
+	if (SDL_Init(SDL_INIT_VIDEO) < 0) {
 		printf("SDL could not initialize! SDL_Error: %s\n", SDL_GetError());
 	}
-	else
-	{
+	else {
 		//Create window
 		window = SDL_CreateWindow("SDL Tutorial", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, SCREEN_WIDTH, SCREEN_HEIGHT, SDL_WINDOW_SHOWN);
-		if (window == NULL)
-		{
+		if (window == NULL) {
 			printf("Window could not be created! SDL_Error: %s\n", SDL_GetError());
 		}
-		else
-		{
+		else {
 			//Create Renderer for the Window
-			if (!Renderer::GetInstance()->Init(window, SCREEN_WIDTH, SCREEN_HEIGHT))
-			{
+			if (!Renderer::GetInstance()->Init(window, SCREEN_WIDTH, SCREEN_HEIGHT)) {
 				return 0;
 			}
 
@@ -80,45 +72,32 @@ int main()
 			current_time = SDL_GetTicks();
 			float ftime;//time between frames
 
-			while (!quit)
-			{
-
+			while (!quit) {
 				// Update the timing information
 				old_time = current_time;
 				current_time = SDL_GetTicks();
 				ftime = (current_time - old_time) / 1000.0f;// Seconds
-				//cout << ftime << endl;
 
-				
-				//minion->Update(x, y, ftime);
 				MinionManager::GetInstance()->Update(x, y, ftime);
-				
-				while (SDL_PollEvent(&e) != 0)
-				{
 
-					
-
+				while (SDL_PollEvent(&e) != 0) {
 					KeyBoardInput::GetInstance()->updateKeyboard(e);
-					switch (e.type)
-					{
-					
-					case SDL_QUIT:
-						quit = true;
-						break;
-
+					switch (e.type) {
+						case SDL_QUIT:
+							quit = true;
+							break;
 					}
 
 					//If a mouse button was pressed
-					if (e.type == SDL_MOUSEBUTTONDOWN)
-					{
+					if (e.type == SDL_MOUSEBUTTONDOWN) {
 						//If the left mouse button was pressed
-						if (e.button.button == SDL_BUTTON_LEFT)
-						{
-							if (e.button.x > BaseManager::GetInstance()->getRect1().x && e.button.x < BaseManager::GetInstance()->getRect1().w + BaseManager::GetInstance()->getRect1().x &&
-								e.button.y > BaseManager::GetInstance()->getRect1().y && e.button.y < BaseManager::GetInstance()->getRect1().h + BaseManager::GetInstance()->getRect1().y) {
+						if (e.button.button == SDL_BUTTON_LEFT) {
+							if (e.button.x > BaseManager::GetInstance()->getRect1().x && 
+								e.button.x < BaseManager::GetInstance()->getRect1().w + BaseManager::GetInstance()->getRect1().x &&
+								e.button.y > BaseManager::GetInstance()->getRect1().y && 
+								e.button.y < BaseManager::GetInstance()->getRect1().h + BaseManager::GetInstance()->getRect1().y) {
 
-								if (GoldManager::GetInstance()->getGold(1) >= 20)
-								{
+								if (GoldManager::GetInstance()->getGold(1) >= 20) {
 									cout << "CREATE MINIONS!!!!" << endl;
 									newMinionX += 100;
 									MinionManager::GetInstance()->addMinion(newMinionX, 100, 1);
@@ -129,37 +108,34 @@ int main()
 								}
 							}
 							// Base clicked
-
-							SDL_Point mouse = { e.button.x, e.button.y};
-
 							MinionManager::GetInstance()->SelectedMouse(e.button.x, e.button.y);
 							x = e.button.x;
 							y = e.button.y;
-							if (buildTower1)
-							{
-								if (GoldManager::GetInstance()->getGold(1) >= 200)
+
+							if (TowerManager::GetInstance()->mouseClicked({ e.button.x, e.button.y })) {
+								if (buildTower1)
 								{
-									TowerManager::GetInstance()->addTower(1, x, y);
-									GoldManager::GetInstance()->subtractGold(200, 1);
+									if (GoldManager::GetInstance()->getGold(1) >= 200)
+									{
+										TowerManager::GetInstance()->addTower(1, x, y);
+										GoldManager::GetInstance()->subtractGold(200, 1);
+									}
+									buildTower1 = false;
 								}
-								buildTower1 = false;
 							}
-							if (TowerManager::GetInstance()->mouseClicked(mouse))
+							if (TowerManager::GetInstance()->mouseClicked({x,y}))
 							{
 								TowerManager::GetInstance()->TeamsOneMinions -= 1;
-
-								for each(Minion * minion in *MinionManager::GetInstance()->ReturnMinionsTeam1())
-								{
-									if (minion->InTower)
-									{
+								for each(Minion * minion in *MinionManager::GetInstance()->ReturnMinionsTeam1()) {
+									if (minion->InTower){
 										SDL_Rect temp = minion->getRect();
 										temp.x += 300;
 										minion->setRect(temp);
 										minion->InTower = false;
 										break;
-									}
-								}
-							}
+									}//end if
+								}//end for
+							}//end if
 						}
 					}
 
@@ -172,42 +148,44 @@ int main()
 						buildTower2 = true;
 					}
 					// Check if player two mouse is over minion
-					if (KeyBoardInput::GetInstance()->isKeyPressed(SDLK_TAB))
-					{
-						if (buildTower2)
-						{
-							if (GoldManager::GetInstance()->getGold(2) >= 200)
-							{
-								TowerManager::GetInstance()->addTower(2, playertwo::GetInstance()->getRect().x, playertwo::GetInstance()->getRect().y);
-								GoldManager::GetInstance()->subtractGold(200,2);
+					if (KeyBoardInput::GetInstance()->isKeyPressed(SDLK_TAB)) {
+						if (playertwo::GetInstance()->getRect().x > BaseManager::GetInstance()->getRect2().x &&
+							playertwo::GetInstance()->getRect().x < BaseManager::GetInstance()->getRect2().w + BaseManager::GetInstance()->getRect2().x &&
+							playertwo::GetInstance()->getRect().y > BaseManager::GetInstance()->getRect2().y &&
+							playertwo::GetInstance()->getRect().y < BaseManager::GetInstance()->getRect2().h + BaseManager::GetInstance()->getRect2().y) {
+							if (GoldManager::GetInstance()->getGold(2) >= 20) {
+								if (buildTower2)
+								{
+									if (GoldManager::GetInstance()->getGold(2) >= 200)
+									{
+										TowerManager::GetInstance()->addTower(2, playertwo::GetInstance()->getRect().x, playertwo::GetInstance()->getRect().y);
+										GoldManager::GetInstance()->subtractGold(200, 2);
+									}
+									buildTower2 = false;
+								}
 							}
-							buildTower2 = false;
-						}
 
-						if (playertwo::GetInstance()->getRect().x > BaseManager::GetInstance()->getRect2().x && playertwo::GetInstance()->getRect().x < BaseManager::GetInstance()->getRect2().w + BaseManager::GetInstance()->getRect2().x &&
-							playertwo::GetInstance()->getRect().y > BaseManager::GetInstance()->getRect2().y && playertwo::GetInstance()->getRect().y < BaseManager::GetInstance()->getRect2().h + BaseManager::GetInstance()->getRect2().y) {
-							if (GoldManager::GetInstance()->getGold(2) >= 20)
-							{
-								cout << "CREATE MINIONS2!!!!" << endl;
-								newMinionX2 += 100;
-								MinionManager::GetInstance()->addMinion(newMinionX2, newMinionY2, 2);
-								if (newMinionX2 >= 700)
-									newMinionX2 = 400;
+							if (playertwo::GetInstance()->getRect().x > BaseManager::GetInstance()->getRect2().x && playertwo::GetInstance()->getRect().x < BaseManager::GetInstance()->getRect2().w + BaseManager::GetInstance()->getRect2().x &&
+								playertwo::GetInstance()->getRect().y > BaseManager::GetInstance()->getRect2().y && playertwo::GetInstance()->getRect().y < BaseManager::GetInstance()->getRect2().h + BaseManager::GetInstance()->getRect2().y) {
+								if (GoldManager::GetInstance()->getGold(2) >= 20)
+								{
+									cout << "CREATE MINIONS2!!!!" << endl;
+									newMinionX2 += 100;
+									MinionManager::GetInstance()->addMinion(newMinionX2, newMinionY2, 2);
+									if (newMinionX2 >= 700)
+										newMinionX2 = 400;
 
-								GoldManager::GetInstance()->subtractGold(20, 2);
+									GoldManager::GetInstance()->subtractGold(20, 2);
+								}
 							}
 						}
-
 						MinionManager::GetInstance()->SelectedKeyboard(playertwo::GetInstance()->getRect().x , playertwo::GetInstance()->getRect().y );
 						SDL_Point mouse = { playertwo::GetInstance()->getRect().x, playertwo::GetInstance()->getRect().y };
 
-						if (TowerManager::GetInstance()->KeyBoardClicked(mouse))
-						{
+						if (TowerManager::GetInstance()->KeyBoardClicked(mouse)) {
 							TowerManager::GetInstance()->TeamsTwoMinions -= 1;
-							for each(Minion * minion in *MinionManager::GetInstance()->ReturnMinionsTeam2())
-							{
-								if (minion->InTower)
-								{
+							for each(Minion * minion in *MinionManager::GetInstance()->ReturnMinionsTeam2()) {
+								if (minion->InTower) {
 									SDL_Rect temp = minion->getRect();
 									temp.x += 250;
 									minion->setRect(temp);
@@ -220,21 +198,21 @@ int main()
 				}
 				//update 
 				//StormWarning::GetInstance()->Update(ftime);
+				
+				//update entities
+				//StormWarning::GetInstance()->Update(ftime);
 				TowerManager::GetInstance()->Update(ftime);
 				playertwo::GetInstance()->Update();
 
-				for each(Minion * minion in *MinionManager::GetInstance()->ReturnMinionsTeam1())
-				{
-					if (TowerManager::GetInstance()->collidingWithTower(minion->getRect(), 1) && !minion->InTower)
-					{
+				//Put Minions into their turrets
+				for each(Minion * minion in *MinionManager::GetInstance()->ReturnMinionsTeam1()) {
+					if (TowerManager::GetInstance()->collidingWithTower(minion->getRect(), 1) && !minion->InTower) {
 						minion->InTower = true;
 						TowerManager::GetInstance()->TeamsOneMinions += 1;
 					}
 				}
-				for each(Minion * minion in *MinionManager::GetInstance()->ReturnMinionsTeam2())
-				{
-					if (TowerManager::GetInstance()->collidingWithTower(minion->getRect(), 2) && !minion->InTower)
-					{
+				for each(Minion * minion in *MinionManager::GetInstance()->ReturnMinionsTeam2()) {
+					if (TowerManager::GetInstance()->collidingWithTower(minion->getRect(), 2) && !minion->InTower) {
 						minion->InTower = true;
 						TowerManager::GetInstance()->TeamsTwoMinions += 1;
 					}
@@ -242,19 +220,14 @@ int main()
 
 				//draw
 				Renderer::GetInstance()->ClearRenderer();
-
-				
 				BaseManager::GetInstance()->Draw();
 				TowerManager::GetInstance()->Draw();
-
-				
 				MinionManager::GetInstance()->Draw();
 				playertwo::GetInstance()->Draw();
 				Renderer::GetInstance()->RenderScreen();
 
 				// Escape button
-				if (KeyBoardInput::GetInstance()->isKeyPressed(SDLK_ESCAPE))
-				{
+				if (KeyBoardInput::GetInstance()->isKeyPressed(SDLK_ESCAPE)) {
 					quit = true;
 				}
 

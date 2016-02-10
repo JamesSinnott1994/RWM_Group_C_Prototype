@@ -10,6 +10,7 @@
 
 class Tower{
 public:
+	bool Tower::colliding(SDL_Rect pos, int rad);
 	Tower(int x, int y, int team);
 	void Draw(int noOfMinions, int team);
 	void update(float time);

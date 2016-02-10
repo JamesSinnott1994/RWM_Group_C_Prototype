@@ -108,18 +108,17 @@ void Tower::Draw(int noOfMinions, int team)
 		}
 	}
 }
-void Tower::update(float time)
-{
+
+void Tower::update(float time) {
 	timeSinceAttack += time;
-	if (timeSinceAttack >= 1)
-	{
+	if (timeSinceAttack >= 1){
 		//do attack here 
 
 		MinionManager::GetInstance()->attackMinion(m_team, 30, dest);
 		timeSinceAttack = 0;
 	}
-	if (health <= 0)
-	{
+
+	if (health <= 0){
 		alive = false;
 	}
 }
@@ -143,7 +142,6 @@ void Tower::Disaster(int identifier)
 		health -= 20;
 	}
 }
-
 
 SDL_Texture* Tower::loadTexture(std::string path, SDL_Renderer* gRenderer){
 	//The final texture
@@ -232,8 +230,20 @@ bool Tower::collidingWithTower(SDL_Rect pos)
 	return false;
 }
 
-
-void Tower::setDamage(int dmg)
-{
+void Tower::setDamage(int dmg){
 	health -= dmg;
+}
+
+bool Tower::colliding(SDL_Rect pos, int rad) {
+	SDL_Point m_pos = { dest.x + dest.w / 2, dest.y - dest.h / 2 };
+	SDL_Point tower_pos = { pos.x + pos.w / 2, pos.y - pos.h / 2 };
+
+	SDL_Point direction = { m_pos.x - tower_pos.x, m_pos.y - tower_pos.y };
+	float length = sqrt(direction.x*direction.x + direction.y*direction.y);
+
+	if (length < rad)
+	{
+		return true;
+	}
+	return false;
 }
