@@ -149,11 +149,12 @@ int main()
 				//minion->Draw();
 				/*Call Draw on objects here*/
 
-				MinionManager::GetInstance()->Draw();
+				
 				
 				TowerManager::GetInstance()->Draw();
 
 				Base::GetInstance()->Draw();
+				MinionManager::GetInstance()->Draw();
 				playertwo::GetInstance()->Draw();
 				Renderer::GetInstance()->RenderScreen();
 

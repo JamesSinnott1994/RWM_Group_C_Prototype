@@ -19,6 +19,9 @@ public:
 	SDL_Rect getRect();
 	
 	void Disaster(int);
+	bool colliding(SDL_Rect pos);
+	void doDamage(int dmg);
+	bool isAlive(){ return m_alive; }
 
 private:
 	//variables
