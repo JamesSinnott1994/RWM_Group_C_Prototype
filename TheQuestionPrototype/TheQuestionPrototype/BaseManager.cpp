@@ -32,3 +32,12 @@ void BaseManager::Update(float time)
 {
 
 }
+
+SDL_Rect BaseManager::getRect1()
+{
+	return team1->getRect();
+}
+SDL_Rect BaseManager::getRect2()
+{
+	return team2->getRect();
+}

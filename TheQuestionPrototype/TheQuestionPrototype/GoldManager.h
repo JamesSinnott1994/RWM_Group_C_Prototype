@@ -32,6 +32,13 @@ public:
 		if (team == 1){ return team1; }
 		else if (team == 2){ return team2; }
 	}
+	void subtractGold(int amount, int team)
+	{
+		if (team == 1)
+			team1 -= amount;
+		if (team == 2)
+			team2 -= amount;
+	}
 
 };
 #endif

@@ -13,6 +13,7 @@ using namespace std;
 #include "MinionManager.h"
 #include "playertwo.h"
 #include "BaseManager.h"
+#include "GoldManager.h"
 
 //Screen dimension constants
 const int SCREEN_WIDTH = 1248;			//SDL
@@ -25,7 +26,9 @@ int main()
 	SDL_Window* window = NULL;
 	int x = 0, y = 0;
 
-	int timer = 0;
+	int newMinionX = 400;
+	int newMinionX2 = 400;
+	int newMinionY2 = 480;
 
 	//SDL
 #pragma region SDL STUFF
@@ -97,7 +100,6 @@ int main()
 						break;
 
 					}
-					timer++;
 
 					//If a mouse button was pressed
 					if (e.type == SDL_MOUSEBUTTONDOWN)
@@ -105,10 +107,20 @@ int main()
 						//If the left mouse button was pressed
 						if (e.button.button == SDL_BUTTON_LEFT)
 						{
-							//if (e.button.x > Base::GetInstance()->getRect().x && e.button.x < Base::GetInstance()->getRect().w + Base::GetInstance()->getRect().x &&
-							//	e.button.y > Base::GetInstance()->getRect().y && e.button.y < Base::GetInstance()->getRect().h + Base::GetInstance()->getRect().y) {
-							//	Base::GetInstance()->createMinion();
-							//}
+							if (e.button.x > BaseManager::GetInstance()->getRect1().x && e.button.x < BaseManager::GetInstance()->getRect1().w + BaseManager::GetInstance()->getRect1().x &&
+								e.button.y > BaseManager::GetInstance()->getRect1().y && e.button.y < BaseManager::GetInstance()->getRect1().h + BaseManager::GetInstance()->getRect1().y) {
+
+								if (GoldManager::GetInstance()->getGold(1) >= 20)
+								{
+									cout << "CREATE MINIONS!!!!" << endl;
+									newMinionX += 100;
+									MinionManager::GetInstance()->addMinion(newMinionX, 100, 1);
+									if (newMinionX >= 700)
+										newMinionX = 400;
+
+									GoldManager::GetInstance()->subtractGold(20, 1);
+								}
+							}
 							// Base clicked
 
 							SDL_Point mouse = { e.button.x, e.button.y};
@@ -129,7 +141,6 @@ int main()
 										temp.x += 300;
 										minion->setRect(temp);
 										minion->InTower = false;
-										timer = 0;
 										break;
 									}
 								}
@@ -140,8 +151,20 @@ int main()
 					// Check if player two mouse is over minion
 					if (KeyBoardInput::GetInstance()->isKeyPressed(SDLK_TAB))
 					{
+						if (playertwo::GetInstance()->getRect().x > BaseManager::GetInstance()->getRect2().x && playertwo::GetInstance()->getRect().x < BaseManager::GetInstance()->getRect2().w + BaseManager::GetInstance()->getRect2().x &&
+							playertwo::GetInstance()->getRect().y > BaseManager::GetInstance()->getRect2().y && playertwo::GetInstance()->getRect().y < BaseManager::GetInstance()->getRect2().h + BaseManager::GetInstance()->getRect2().y) {
+							if (GoldManager::GetInstance()->getGold(2) >= 20)
+							{
+								cout << "CREATE MINIONS2!!!!" << endl;
+								newMinionX2 += 100;
+								MinionManager::GetInstance()->addMinion(newMinionX2, newMinionY2, 2);
+								if (newMinionX2 >= 700)
+									newMinionX2 = 400;
 
-						int t = 0;
+								GoldManager::GetInstance()->subtractGold(20, 2);
+							}
+						}
+
 						MinionManager::GetInstance()->SelectedKeyboard(playertwo::GetInstance()->getRect().x , playertwo::GetInstance()->getRect().y );
 						SDL_Point mouse = { playertwo::GetInstance()->getRect().x, playertwo::GetInstance()->getRect().y };
 
@@ -156,7 +179,6 @@ int main()
 									temp.x += 250;
 									minion->setRect(temp);
 									minion->InTower = false;
-									timer = 0;
 									break;
 								}
 							}
@@ -187,8 +209,6 @@ int main()
 
 				//draw
 				Renderer::GetInstance()->ClearRenderer();
-				//minion->Draw();
-				/*Call Draw on objects here*/
 
 				
 				
