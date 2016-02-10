@@ -5,6 +5,7 @@
 #include <cmath>
 #include <fstream>
 #include <SDL.h>
+#include <SDL_image.h>
 #include "Renderer.h"
 #include "KeyBoardInput.h"
 
@@ -18,12 +19,13 @@ private:
 	float y;
 	float w;
 	float h;
+	SDL_Texture* mouse;
 
 	playertwo::playertwo()
 	{
 
 	}
-
+	SDL_Texture* loadTexture(std::string path, SDL_Renderer* gRenderer);
 public:
 	static playertwo* GetInstance();
 	~playertwo()

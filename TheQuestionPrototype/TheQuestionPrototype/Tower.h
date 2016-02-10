@@ -9,7 +9,7 @@
 
 class Tower{
 public:
-	Tower(int x, int y);
+	Tower(int x, int y, int team);
 	void Draw();
 	void update(float time);
 	SDL_Texture* loadTexture(std::string path, SDL_Renderer* gRenderer);
@@ -28,6 +28,7 @@ private:
 	SDL_Point offset;
 	Uint32 last_mouse_clicked_time;
 	bool alive;
+	int m_team;
 	
 
 	float timeSinceAttack;

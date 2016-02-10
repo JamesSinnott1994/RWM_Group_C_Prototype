@@ -25,7 +25,7 @@ int main()
 	SDL_Window* window = NULL;
 	int x = 0, y = 0;
 
-	playertwo::GetInstance()->Init();
+	
 
 	//SDL
 #pragma region SDL STUFF
@@ -56,7 +56,11 @@ int main()
 
 			TowerManager::GetInstance()->addTower(1, 100, 100);
 
+			TowerManager::GetInstance()->addTower(2, 400, 400);
+
 			Base::GetInstance()->Init(SCREEN_WIDTH, SCREEN_HEIGHT);
+
+			playertwo::GetInstance()->Init();
 
 			bool quit = false;
 			SDL_Event e;

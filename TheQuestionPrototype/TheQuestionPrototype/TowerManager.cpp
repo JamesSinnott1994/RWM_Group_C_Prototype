@@ -28,9 +28,9 @@ TowerManager::TowerManager(){
 void TowerManager::addTower(int team, float x, float y)
 {
 	if (team == 1)
-	Team_1_towers.push_back(new Tower(x, y));
+	Team_1_towers.push_back(new Tower(x, y,1));
 	if (team == 2)
-		Team_2_towers.push_back(new Tower(x, y));
+		Team_2_towers.push_back(new Tower(x, y,2));
 }
 
 void TowerManager::Draw()
@@ -56,6 +56,10 @@ void TowerManager::Update(float time)
 		}
 		else
 		{
+
+
+
+
 			it = Team_1_towers.erase(it);
 		}
 	}

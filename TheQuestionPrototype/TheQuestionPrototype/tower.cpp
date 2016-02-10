@@ -1,9 +1,13 @@
 #include "Tower.h"
 
-Tower::Tower(int x, int y )
+Tower::Tower(int x, int y , int team)
 {
-
+		m_team = team;
 		src = {0,0,20,20};
+		if (team == 2)
+		{
+			src = { 20, 0, 20, 20 };
+		}
 		dest = {x,y,20,20};
 		text = loadTexture("towerImg.png", Renderer::GetInstance()->Get_SDL_RENDERER());
 		statstext = loadTexture("stats.png", Renderer::GetInstance()->Get_SDL_RENDERER());
