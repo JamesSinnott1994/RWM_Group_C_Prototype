@@ -168,13 +168,14 @@ SDL_Texture* Tower::loadTexture(std::string path, SDL_Renderer* gRenderer){
 
 bool Tower::mouseClicked(SDL_Point mouse, int noOfMinions)
 {
+	bool click = false;
 	// Remove minions
 		if (noOfMinions > 0
 			&& mouse.x > rect.x && mouse.x < rect.x + rect.w
 			&& mouse.y > rect.y && mouse.y < rect.y + rect.h)
 		{
 			std::cout << "!!!!!!!!!!!!!!!!!!!!!!!!!!!" << std::endl;
-			return true;
+			click = true;
 		}
 
 	
@@ -216,7 +217,7 @@ bool Tower::mouseClicked(SDL_Point mouse, int noOfMinions)
 			GoldManager::GetInstance()->addGold(-100, m_team);
 		}
 
-		return false;
+		return click;
 
 }
 
