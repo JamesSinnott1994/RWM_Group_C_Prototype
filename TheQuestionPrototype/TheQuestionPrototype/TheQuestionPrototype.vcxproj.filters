@@ -13,6 +13,9 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Art">
+      <UniqueIdentifier>{23908bc2-0ea3-4b38-905d-cc1a8bb96c1f}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source.cpp">
@@ -30,6 +33,12 @@
     <ClCompile Include="tower.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Minion.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="MinionManager.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="KeyBoardInput.h">
@@ -44,5 +53,16 @@
     <ClInclude Include="Tower.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Minion.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="MinionManager.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="minion.png">
+      <Filter>Art</Filter>
+    </Image>
   </ItemGroup>
 </Project>
