@@ -30,19 +30,19 @@ void playertwo::Init()
 void playertwo::Update()
 {
 	// Move mouse
-	if (KeyBoardInput::GetInstance()->isKeyPressed(SDLK_UP))
+	if (KeyBoardInput::GetInstance()->isKeyPressed(SDLK_w))
 	{
 		y -= 0.05f;
 	}
-	if (KeyBoardInput::GetInstance()->isKeyPressed(SDLK_DOWN))
+	if (KeyBoardInput::GetInstance()->isKeyPressed(SDLK_s))
 	{
 		y += 0.05f;
 	}
-	if (KeyBoardInput::GetInstance()->isKeyPressed(SDLK_LEFT))
+	if (KeyBoardInput::GetInstance()->isKeyPressed(SDLK_a))
 	{
 		x -= 0.05f;
 	}
-	if (KeyBoardInput::GetInstance()->isKeyPressed(SDLK_RIGHT))
+	if (KeyBoardInput::GetInstance()->isKeyPressed(SDLK_d))
 	{
 		x += 0.05f;
 	}

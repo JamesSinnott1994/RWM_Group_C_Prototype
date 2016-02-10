@@ -55,13 +55,13 @@ int main()
 				return 0;
 			}
 
-			MinionManager::GetInstance()->addMinion(300, 100, 1);
-			MinionManager::GetInstance()->addMinion(300, 300, 1);
-			MinionManager::GetInstance()->addMinion(300, 500, 1);	
+			//MinionManager::GetInstance()->addMinion(300, 100, 1);
+			//MinionManager::GetInstance()->addMinion(300, 300, 1);
+			//MinionManager::GetInstance()->addMinion(300, 500, 1);	
 
-			MinionManager::GetInstance()->addMinion(700, 100, 2);
-			MinionManager::GetInstance()->addMinion(700, 300, 2);
-			MinionManager::GetInstance()->addMinion(700, 500, 2);
+			//MinionManager::GetInstance()->addMinion(700, 100, 2);
+			//MinionManager::GetInstance()->addMinion(700, 300, 2);
+			//MinionManager::GetInstance()->addMinion(700, 500, 2);
 
 			TowerManager::GetInstance()->addTower(1, 474, 100);
 			TowerManager::GetInstance()->addTower(1, 774, 100);
@@ -163,11 +163,11 @@ int main()
 						}
 					}
 
-					if (KeyBoardInput::GetInstance()->isKeyPressed(SDLK_b))
+					if (KeyBoardInput::GetInstance()->isKeyPressed(SDLK_RCTRL))
 					{
 						buildTower1 = true;
 					}
-					if (KeyBoardInput::GetInstance()->isKeyPressed(SDLK_v))
+					if (KeyBoardInput::GetInstance()->isKeyPressed(SDLK_LCTRL))
 					{
 						buildTower2 = true;
 					}
@@ -219,7 +219,7 @@ int main()
 					}
 				}
 				//update 
-				StormWarning::GetInstance()->Update(ftime);
+				//StormWarning::GetInstance()->Update(ftime);
 				TowerManager::GetInstance()->Update(ftime);
 				playertwo::GetInstance()->Update();
 
