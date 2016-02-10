@@ -92,11 +92,11 @@ bool TowerManager::collidingWithTower(SDL_Rect pos, int team) {
 				return true;
 			}
 		}
-		for each (Tower* t in Team_2_towers){
+		/*for each (Tower* t in Team_2_towers){
 			if (t->collidingWithTower(pos)){
 				t->setDamage(1);
 			}
-		}
+		}*/
 	}
 	
 	else if (team == 2) {
@@ -105,9 +105,31 @@ bool TowerManager::collidingWithTower(SDL_Rect pos, int team) {
 				return true;
 			}
 		}
-		for each (Tower* t in Team_1_towers){
+		/*for each (Tower* t in Team_1_towers){
 			if (t->collidingWithTower(pos)){
 				t->setDamage(1);
+			}
+		}*/
+	}
+}
+
+void TowerManager::attackTurret(int team, int damage, SDL_Rect minionPos) {
+	if (team == 1) {
+		for each  (Tower* t in Team_2_towers){
+			if (t->colliding(minionPos, 150)) {
+				t->setDamage(damage);
+				break;
+			}
+		}
+	}
+	else if (team == 2)
+	{
+		for each  (Tower* t in Team_1_towers){
+
+			if (t->colliding(minionPos, 150))
+			{
+				t->setDamage(damage);
+				break;
 			}
 		}
 	}

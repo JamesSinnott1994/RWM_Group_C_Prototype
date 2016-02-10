@@ -20,8 +20,7 @@ const int SCREEN_WIDTH = 1248;			//SDL
 const int SCREEN_HEIGHT = 704;			//SDL
 
 
-int main()
-{
+int main() {
 	//The window we'll be rendering to
 	SDL_Window* window = NULL;
 	int x = 0, y = 0;
@@ -30,29 +29,21 @@ int main()
 	int newMinionX2 = 400;
 	int newMinionY2 = 480;
 
-	//SDL
-#pragma region SDL STUFF
 	//Initialize SDL
-	if (SDL_Init(SDL_INIT_VIDEO) < 0)
-	{
+	if (SDL_Init(SDL_INIT_VIDEO) < 0) {
 		printf("SDL could not initialize! SDL_Error: %s\n", SDL_GetError());
 	}
-	else
-	{
+	else {
 		//Create window
 		window = SDL_CreateWindow("SDL Tutorial", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, SCREEN_WIDTH, SCREEN_HEIGHT, SDL_WINDOW_SHOWN);
-		if (window == NULL)
-		{
+		if (window == NULL) {
 			printf("Window could not be created! SDL_Error: %s\n", SDL_GetError());
 		}
-		else
-		{
+		else {
 			//Create Renderer for the Window
-			if (!Renderer::GetInstance()->Init(window, SCREEN_WIDTH, SCREEN_HEIGHT))
-			{
+			if (!Renderer::GetInstance()->Init(window, SCREEN_WIDTH, SCREEN_HEIGHT)) {
 				return 0;
 			}
-#pragma endregion
 
 			MinionManager::GetInstance()->addMinion(300, 100, 1);
 			MinionManager::GetInstance()->addMinion(300, 300, 1);
@@ -87,8 +78,7 @@ int main()
 
 				MinionManager::GetInstance()->Update(x, y, ftime);
 
-				while (SDL_PollEvent(&e) != 0)
-				{
+				while (SDL_PollEvent(&e) != 0) {
 					KeyBoardInput::GetInstance()->updateKeyboard(e);
 					switch (e.type) {
 						case SDL_QUIT:
@@ -122,28 +112,26 @@ int main()
 
 							if (TowerManager::GetInstance()->mouseClicked({ e.button.x, e.button.y })) {
 								TowerManager::GetInstance()->TeamsOneMinions -= 1;
-
 								for each(Minion * minion in *MinionManager::GetInstance()->ReturnMinionsTeam1()) {
-									if (minion->InTower)
-									{
+									if (minion->InTower){
 										SDL_Rect temp = minion->getRect();
 										temp.x += 300;
 										minion->setRect(temp);
 										minion->InTower = false;
 										break;
-									}
-								}
-							}
+									}//end if
+								}//end for
+							}//end if
 						}
 					}
 
 					// Check if player two mouse is over minion
-					if (KeyBoardInput::GetInstance()->isKeyPressed(SDLK_TAB))
-					{
-						if (playertwo::GetInstance()->getRect().x > BaseManager::GetInstance()->getRect2().x && playertwo::GetInstance()->getRect().x < BaseManager::GetInstance()->getRect2().w + BaseManager::GetInstance()->getRect2().x &&
-							playertwo::GetInstance()->getRect().y > BaseManager::GetInstance()->getRect2().y && playertwo::GetInstance()->getRect().y < BaseManager::GetInstance()->getRect2().h + BaseManager::GetInstance()->getRect2().y) {
-							if (GoldManager::GetInstance()->getGold(2) >= 20)
-							{
+					if (KeyBoardInput::GetInstance()->isKeyPressed(SDLK_TAB)) {
+						if (playertwo::GetInstance()->getRect().x > BaseManager::GetInstance()->getRect2().x && 
+							playertwo::GetInstance()->getRect().x < BaseManager::GetInstance()->getRect2().w + BaseManager::GetInstance()->getRect2().x &&
+							playertwo::GetInstance()->getRect().y > BaseManager::GetInstance()->getRect2().y && 
+							playertwo::GetInstance()->getRect().y < BaseManager::GetInstance()->getRect2().h + BaseManager::GetInstance()->getRect2().y) {
+							if (GoldManager::GetInstance()->getGold(2) >= 20) {
 								cout << "CREATE MINIONS2!!!!" << endl;
 								newMinionX2 += 100;
 								MinionManager::GetInstance()->addMinion(newMinionX2, newMinionY2, 2);
@@ -157,13 +145,10 @@ int main()
 						MinionManager::GetInstance()->SelectedKeyboard(playertwo::GetInstance()->getRect().x , playertwo::GetInstance()->getRect().y );
 						SDL_Point mouse = { playertwo::GetInstance()->getRect().x, playertwo::GetInstance()->getRect().y };
 
-						if (TowerManager::GetInstance()->KeyBoardClicked(mouse))
-						{
+						if (TowerManager::GetInstance()->KeyBoardClicked(mouse)) {
 							TowerManager::GetInstance()->TeamsTwoMinions -= 1;
-							for each(Minion * minion in *MinionManager::GetInstance()->ReturnMinionsTeam2())
-							{
-								if (minion->InTower)
-								{
+							for each(Minion * minion in *MinionManager::GetInstance()->ReturnMinionsTeam2()) {
+								if (minion->InTower) {
 									SDL_Rect temp = minion->getRect();
 									temp.x += 250;
 									minion->setRect(temp);
@@ -174,23 +159,21 @@ int main()
 						}
 					}
 				}
-				//update 
+				
+				//update entities
 				StormWarning::GetInstance()->Update(ftime);
 				TowerManager::GetInstance()->Update(ftime);
 				playertwo::GetInstance()->Update();
 
-				for each(Minion * minion in *MinionManager::GetInstance()->ReturnMinionsTeam1())
-				{
-					if (TowerManager::GetInstance()->collidingWithTower(minion->getRect(), 1) && !minion->InTower)
-					{
+				//Put Minions into their turrets
+				for each(Minion * minion in *MinionManager::GetInstance()->ReturnMinionsTeam1()) {
+					if (TowerManager::GetInstance()->collidingWithTower(minion->getRect(), 1) && !minion->InTower) {
 						minion->InTower = true;
 						TowerManager::GetInstance()->TeamsOneMinions += 1;
 					}
 				}
-				for each(Minion * minion in *MinionManager::GetInstance()->ReturnMinionsTeam2())
-				{
-					if (TowerManager::GetInstance()->collidingWithTower(minion->getRect(), 2) && !minion->InTower)
-					{
+				for each(Minion * minion in *MinionManager::GetInstance()->ReturnMinionsTeam2()) {
+					if (TowerManager::GetInstance()->collidingWithTower(minion->getRect(), 2) && !minion->InTower) {
 						minion->InTower = true;
 						TowerManager::GetInstance()->TeamsTwoMinions += 1;
 					}
@@ -198,19 +181,14 @@ int main()
 
 				//draw
 				Renderer::GetInstance()->ClearRenderer();
-
-				
 				BaseManager::GetInstance()->Draw();
 				TowerManager::GetInstance()->Draw();
-
-				
 				MinionManager::GetInstance()->Draw();
 				playertwo::GetInstance()->Draw();
 				Renderer::GetInstance()->RenderScreen();
 
 				// Escape button
-				if (KeyBoardInput::GetInstance()->isKeyPressed(SDLK_ESCAPE))
-				{
+				if (KeyBoardInput::GetInstance()->isKeyPressed(SDLK_ESCAPE)) {
 					quit = true;
 				}
 

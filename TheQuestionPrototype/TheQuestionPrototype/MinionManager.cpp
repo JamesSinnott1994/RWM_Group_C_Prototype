@@ -21,12 +21,14 @@ void MinionManager::Init( SDL_Renderer* gRenderer)
 {
 
 }
+
 void MinionManager::SelectedMouse(int mouseX, int mouseY){
 	for each  (Minion* minion in minions_Team1){
 
 		minion->Selected(mouseX, mouseY);
 	}
 }
+
 void MinionManager::SelectedKeyboard(int mouseX, int mouseY)
 {
 	for each  (Minion* minion in minions_Team2){
@@ -48,6 +50,7 @@ void MinionManager::addMinion(int x, int y, int team)
 	}
 	
 }
+
 void MinionManager::Update(int mouseX, int mouseY, float t){
 	for (std::list<Minion*>::iterator it = minions_Team1.begin(); it != minions_Team1.end();)
 	{
@@ -74,6 +77,7 @@ void MinionManager::Update(int mouseX, int mouseY, float t){
 		}
 	}
 }
+
 void MinionManager::Draw(){
 
 	for each  (Minion* minion in minions_Team1){
@@ -85,7 +89,6 @@ void MinionManager::Draw(){
 		minion->Draw();
 	}
 }
-
 
 void MinionManager::DisasterOccured(int type)
 {
@@ -111,14 +114,10 @@ std::list<Minion*>* MinionManager::ReturnMinionsTeam2()
 
 }
 
-void MinionManager::attackMinion(int team, int damage, SDL_Rect towerpos)
-{
-	if (team == 1)
-	{
+void MinionManager::attackMinion(int team, int damage, SDL_Rect towerpos) {
+	if (team == 1) {
 		for each  (Minion* minion in minions_Team2){
-
-			if (minion->colliding(towerpos,150))
-			{
+			if (minion->colliding(towerpos,150)) {
 				minion->doDamage(damage);
 				break;
 			}

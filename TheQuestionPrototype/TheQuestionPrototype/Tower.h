@@ -10,6 +10,7 @@
 
 class Tower{
 public:
+	bool Tower::colliding(SDL_Rect pos, int rad);
 	Tower(int x, int y, int team);
 	void Draw(int noOfMinions, int team);
 	void update(float time);
@@ -43,7 +44,7 @@ private:
 	
 
 	float timeSinceAttack;
-	__int8 health;
+	int health;
 	bool displayStats;
 
 	bool stormProof, volcanoProof, floodProof, earthquakeProof;

@@ -1,19 +1,11 @@
 #include "Minion.h"
-#include "Renderer.h"
-#include <SDL_image.h>
 
-
-
-Minion::Minion(int x, int y, int teamColour)
-{
-	m_x = x;
-	m_y = y;
-	team = teamColour;
+Minion::Minion(int x, int y, int teamColour) : m_x(x), m_y(y), m_team(teamColour) {
 	m_width = 50;
 	m_height = 70;
 	m_alive = true;
 	m_health = 100;
-	m_attackSpeed = 1;
+	m_attackSpeed = .75;
 	m_moveSpeed = 1;
 	m_attackPower = 5;
 	m_selected = false;
@@ -22,9 +14,9 @@ Minion::Minion(int x, int y, int teamColour)
 
 	InTower = false;
 
-	if (team == 1)
+	if (m_team == 1)
 		src = { 0, 0, m_width, m_height };
-	else if (team == 2)
+	else if (m_team == 2)
 		src = { m_width, 0, m_width, m_height };
 
 	dest = { m_x, m_y, m_width, m_height };
@@ -72,32 +64,30 @@ SDL_Texture* Minion::loadTexture(std::string path, SDL_Renderer* gRenderer){
 	return newTexture;
 }
 
-void Minion::Update(int mouseX, int mouseY, float t)
-{	
+void Minion::Update(int mouseX, int mouseY, float t) {
 	time += t;
-	if (m_alive == true)
-	{
-		if (m_health <= 0)
-		{
+	timeSinceAttack += t;
+	if (m_alive == true) {
+		if (m_health <= 0) {
 			m_alive = false;
 		}
 
-
-		if (time > 1)
-		{
+		if (time > 1) {
 			recentlyMoved = false;
 			time = 0;
 		}
 
-		if (m_selectCheck == false)
-		{
+		if (m_selectCheck == false) {
 			Move(mouseX,mouseY);
-			
 		}
-		//Selected(mouseX, mouseY);
-		
+
+		if (timeSinceAttack >= m_attackSpeed){
+			TowerManager::GetInstance()->attackTurret(m_team, 10, SDL_Rect{m_x, m_y, dest.w, dest.h} );
+			timeSinceAttack = 0;
+		}
 	}
 }
+
 void Minion::Move(int mouseX, int mouseY)
 {
 	if (m_selected == true)
@@ -111,6 +101,7 @@ void Minion::Move(int mouseX, int mouseY)
 	}
 	
 }
+
 void Minion::Selected(int mouseX, int mouseY)
 {
 	if (!InTower)
@@ -141,7 +132,6 @@ void Minion::Selected(int mouseX, int mouseY)
 		}
 	}
 }
-
 
 SDL_Rect Minion::getRect()
 {
