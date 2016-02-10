@@ -6,14 +6,10 @@ using namespace std;
 
 #include "Renderer.h"
 #include "KeyBoardInput.h"
-<<<<<<< HEAD
-#include "Tower.h"
 #include "Minion.h"
-=======
 #include "TowerManager.h"
 #include "Base.h"
 #include "StormWarning.h"
->>>>>>> origin/master
 #include <list>
 #include "MinionManager.h"
 
@@ -50,37 +46,21 @@ int main()
 			{
 				return 0;
 			}
-<<<<<<< HEAD
-			list<Tower*> towers;
-			//Minion *minion = new Minion(300, 300, 0);
 
 			MinionManager::GetInstance()->addMinion(300, 300, 0);
 			MinionManager::GetInstance()->addMinion(420, 420, 0);
-			MinionManager::GetInstance()->addMinion(69, 69, 0);
-
-			for (int i = 0; i < 10; i++)
-			{
-				towers.push_back(new Tower(i * 100, 100));
-			}
-=======
-			
+			MinionManager::GetInstance()->addMinion(69, 69, 0);		
 
 			TowerManager::GetInstance()->addTower(1, 100, 100);
 
 			Base::GetInstance()->Init(SCREEN_WIDTH, SCREEN_HEIGHT);
 
->>>>>>> origin/master
-
 			bool quit = false;
 			SDL_Event e;
 
 			// Timing variables
-<<<<<<< HEAD
-			Uint32 old_time, current_time = 0;
-=======
 			Uint32 old_time, current_time;
 			current_time = SDL_GetTicks();
->>>>>>> origin/master
 			float ftime;//time between frames
 
 			while (!quit)
@@ -92,23 +72,12 @@ int main()
 				ftime = (current_time - old_time) / 1000.0f;// Seconds
 				//cout << ftime << endl;
 
-<<<<<<< HEAD
-				
-				if (SDL_GetMouseState(NULL, NULL) & SDL_BUTTON(SDL_BUTTON_LEFT)) {
-					int tempX = 0, tempY = 0;
-					SDL_GetMouseState(&tempX, & tempY);
-					//cout << tempX << " , " << tempY << endl;
-					MinionManager::GetInstance()->Selected(tempX,tempY);
-				}
 				
 				//minion->Update(x, y, ftime);
 				MinionManager::GetInstance()->Update(x, y, ftime);
 
-				while (SDL_PollEvent(&e) != 0){
-=======
 				while (SDL_PollEvent(&e) != 0)
 				{
->>>>>>> origin/master
 					KeyBoardInput::GetInstance()->updateKeyboard(e);
 					switch (e.type)
 					{
@@ -131,6 +100,9 @@ int main()
 							SDL_Point mouse = { e.button.x, e.button.y};
 
 							TowerManager::GetInstance()->mouseClicked(mouse);
+							MinionManager::GetInstance()->Selected(e.button.x, e.button.y);
+							x = e.button.x;
+							y = e.button.y;
 						}
 					}
 				}
@@ -140,21 +112,15 @@ int main()
 
 				//draw
 				Renderer::GetInstance()->ClearRenderer();
-<<<<<<< HEAD
 				//minion->Draw();
 				/*Call Draw on objects here*/
-				for each(Tower * t in towers)
-				{
-					t->Draw();
-				}
+
 				MinionManager::GetInstance()->Draw();
-=======
 
 				TowerManager::GetInstance()->Draw();
 
 				Base::GetInstance()->Draw();
 
->>>>>>> origin/master
 				Renderer::GetInstance()->RenderScreen();
 
 				// Escape button
