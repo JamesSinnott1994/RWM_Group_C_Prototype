@@ -112,7 +112,6 @@ int main() {
 							x = e.button.x;
 							y = e.button.y;
 
-							if (TowerManager::GetInstance()->mouseClicked({ e.button.x, e.button.y })) {
 								if (buildTower1)
 								{
 									if (GoldManager::GetInstance()->getGold(1) >= 200)
@@ -122,7 +121,6 @@ int main() {
 									}
 									buildTower1 = false;
 								}
-							}
 							if (TowerManager::GetInstance()->mouseClicked({x,y}))
 							{
 								TowerManager::GetInstance()->TeamsOneMinions -= 1;
