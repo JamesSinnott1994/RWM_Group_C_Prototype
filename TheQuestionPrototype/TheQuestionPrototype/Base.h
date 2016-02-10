@@ -12,27 +12,23 @@
 class Base
 {
 private:
-	static bool instanceFlag;
-	static Base* instance;
 
-	__int8 health;
+
+	int health;
 	SDL_Texture* text;
 	SDL_Rect src, dest;
 	SDL_Point offset;
-
-	Base::Base()
-	{
-		health = 10;
-	}
+	int m_team;
+	
 
 public:
-	static Base* GetInstance();
+	Base(SDL_Point, int);
 	~Base()
 	{
-		instanceFlag = false;
+		
 	}
 
-	__int8 getHealth();
+	int getHealth();
 	void setHealth(int pHealth);
 	void Init(int width, int height);
 	void Update();

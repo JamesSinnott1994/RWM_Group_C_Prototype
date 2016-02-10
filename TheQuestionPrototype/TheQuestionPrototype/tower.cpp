@@ -1,5 +1,6 @@
 #include "Tower.h"
 #include "MinionManager.h"
+#include "GoldManager.h"
 
 Tower::Tower(int x, int y , int team)
 {
@@ -140,27 +141,35 @@ void Tower::mouseClicked(SDL_Point mouse)
 		}
 		else if (!stormProof &&
 			mouse.x < dest.x +45 && mouse.x > dest.x + 25
-			&&mouse.y < dest.y + 40 && mouse.y > dest.y +20)
+			&&mouse.y < dest.y + 40 && mouse.y > dest.y +20 &&
+			GoldManager::GetInstance()->getGold(m_team) >= 100)
 		{
 			stormProof = true;
+			GoldManager::GetInstance()->addGold(-100, m_team);
 		}
 		else if (!volcanoProof &&
 			mouse.x < dest.x + 75 && mouse.x > dest.x + 50
-			&& mouse.y < dest.y + 40 && mouse.y > dest.y + 20)
+			&& mouse.y < dest.y + 40 && mouse.y > dest.y + 20 &&
+			GoldManager::GetInstance()->getGold(m_team) >= 100)
 		{
 			volcanoProof = true;
+			GoldManager::GetInstance()->addGold(-100, m_team);
 		}
 		else if (!floodProof &&
 			mouse.x < dest.x + 95 && mouse.x > dest.x + 75
-			&& mouse.y < dest.y + 40 && mouse.y > dest.y + 20)
+			&& mouse.y < dest.y + 40 && mouse.y > dest.y + 20 &&
+			GoldManager::GetInstance()->getGold(m_team) >= 100)
 		{
 			floodProof = true;
+			GoldManager::GetInstance()->addGold(-100, m_team);
 		}
 		else if (!earthquakeProof &&
 			mouse.x < dest.x + 125 && mouse.x > dest.x + 100
-			&& mouse.y < dest.y + 40 && mouse.y > dest.y + 20)
+			&& mouse.y < dest.y + 40 && mouse.y > dest.y + 20 &&
+			GoldManager::GetInstance()->getGold(m_team) >= 100)
 		{
 			earthquakeProof = true;
+			GoldManager::GetInstance()->addGold(-100, m_team);
 		}
 
 }

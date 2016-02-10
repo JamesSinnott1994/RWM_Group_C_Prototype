@@ -8,11 +8,11 @@ using namespace std;
 #include "KeyBoardInput.h"
 #include "Minion.h"
 #include "TowerManager.h"
-#include "Base.h"
 #include "StormWarning.h"
 #include <list>
 #include "MinionManager.h"
 #include "playertwo.h"
+#include "BaseManager.h"
 
 //Screen dimension constants
 const int SCREEN_WIDTH = 1248;			//SDL
@@ -61,8 +61,7 @@ int main()
 			TowerManager::GetInstance()->addTower(1, 100, 100);
 
 			TowerManager::GetInstance()->addTower(2, 400, 400);
-
-			Base::GetInstance()->Init(SCREEN_WIDTH, SCREEN_HEIGHT);
+			BaseManager::GetInstance()->Init();
 
 			playertwo::GetInstance()->Init();
 
@@ -104,10 +103,10 @@ int main()
 						//If the left mouse button was pressed
 						if (e.button.button == SDL_BUTTON_LEFT)
 						{
-							if (e.button.x > Base::GetInstance()->getRect().x && e.button.x < Base::GetInstance()->getRect().w + Base::GetInstance()->getRect().x &&
-								e.button.y > Base::GetInstance()->getRect().y && e.button.y < Base::GetInstance()->getRect().h + Base::GetInstance()->getRect().y) {
-								Base::GetInstance()->createMinion();
-							}
+							//if (e.button.x > Base::GetInstance()->getRect().x && e.button.x < Base::GetInstance()->getRect().w + Base::GetInstance()->getRect().x &&
+							//	e.button.y > Base::GetInstance()->getRect().y && e.button.y < Base::GetInstance()->getRect().h + Base::GetInstance()->getRect().y) {
+							//	Base::GetInstance()->createMinion();
+							//}
 							SDL_Point mouse = { e.button.x, e.button.y};
 
 							TowerManager::GetInstance()->mouseClicked(mouse);
@@ -153,7 +152,7 @@ int main()
 				
 				TowerManager::GetInstance()->Draw();
 
-				Base::GetInstance()->Draw();
+				BaseManager::GetInstance()->Draw();
 				MinionManager::GetInstance()->Draw();
 				playertwo::GetInstance()->Draw();
 				Renderer::GetInstance()->RenderScreen();

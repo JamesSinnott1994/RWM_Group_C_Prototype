@@ -1,28 +1,19 @@
 #include "Base.h"
 
-bool Base::instanceFlag = false;
-Base* Base::instance = NULL;
-
-Base* Base::GetInstance()
+Base::Base(SDL_Point pos, int team )
 {
-	if (!instanceFlag)
-	{
-		instance = new Base;
-		instanceFlag = true;
-		return instance;
-	}
-	else
-	{
-		return instance;
-	}
-}
-
-void Base::Init(int width, int height)
-{
+	m_team = team;
+	health = 500;
 	src = { 0, 0, 280, 151 };
-	dest = { width/2, 0, 280/2, 151/2 };
+	dest = { pos.x , pos.y, 280,151 };
 	text = loadTexture("base2.png", Renderer::GetInstance()->Get_SDL_RENDERER());
+	if (team == 2)
+	{
+		src = { 280, 0, 280, 151 };
+	}
 }
+
+
 
 void Base::Update()
 {
@@ -65,7 +56,7 @@ void Base::createMinion() {
 	std::cout << "creating a minion at the base" << std::endl;
 }
 
-__int8 Base::getHealth(){
+int Base::getHealth(){
 	return health;
 }
 

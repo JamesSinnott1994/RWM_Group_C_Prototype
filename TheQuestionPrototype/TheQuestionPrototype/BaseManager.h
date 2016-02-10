@@ -1,0 +1,33 @@
+#ifndef _BASEMANAGER_H_
+#define _BASEMANAGER_H_
+
+#include "Base.h"
+#include <iostream>
+using namespace std;
+
+
+class BaseManager
+{
+private:
+
+	Base* team1;
+	Base* team2;
+	static bool instanceFlag;
+	static BaseManager* instance;
+	BaseManager(){}
+
+public:
+
+	static BaseManager* GetInstance();
+	~BaseManager()
+	{
+		delete instance;
+		instanceFlag = false;
+	}
+	void Draw();
+	void Update(float time);
+	void Init();
+
+
+};
+#endif

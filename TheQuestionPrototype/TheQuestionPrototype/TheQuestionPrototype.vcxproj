@@ -76,6 +76,8 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Base.cpp" />
+    <ClCompile Include="BaseManager.cpp" />
+    <ClCompile Include="GoldManager.cpp" />
     <ClCompile Include="KeyBoardInput.cpp" />
     <ClCompile Include="Minion.cpp" />
     <ClCompile Include="MinionManager.cpp" />
@@ -89,6 +91,8 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Base.h" />
+    <ClInclude Include="BaseManager.h" />
+    <ClInclude Include="GoldManager.h" />
     <ClInclude Include="KeyBoardInput.h" />
     <ClInclude Include="Minion.h" />
     <ClInclude Include="MinionManager.h" />
