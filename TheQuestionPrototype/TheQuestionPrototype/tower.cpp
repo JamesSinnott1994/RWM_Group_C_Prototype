@@ -108,6 +108,7 @@ void Tower::Draw(int noOfMinions, int team)
 		}
 	}
 }
+
 void Tower::update(float time)
 {
 	timeSinceAttack += time;
@@ -143,7 +144,6 @@ void Tower::Disaster(int identifier)
 		health -= 20;
 	}
 }
-
 
 SDL_Texture* Tower::loadTexture(std::string path, SDL_Renderer* gRenderer){
 	//The final texture
@@ -232,8 +232,6 @@ bool Tower::collidingWithTower(SDL_Rect pos)
 	return false;
 }
 
-
-void Tower::setDamage(int dmg)
-{
+void Tower::setDamage(int dmg){
 	health -= dmg;
 }

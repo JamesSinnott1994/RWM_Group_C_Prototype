@@ -110,6 +110,7 @@ std::list<Minion*>* MinionManager::ReturnMinionsTeam2()
 	return &minions_Team2;
 
 }
+
 void MinionManager::attackMinion(int team, int damage, SDL_Rect towerpos)
 {
 	if (team == 1)

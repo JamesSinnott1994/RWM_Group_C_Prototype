@@ -39,7 +39,7 @@ private:
 	int m_x, m_y;
 	bool m_alive;
 	int m_width, m_height;
-	int m_health;
+	__int8 m_health;
 	bool m_selected;
 	bool m_selectCheck;
 	bool recentlyMoved;

@@ -7,8 +7,7 @@
 using namespace std;
 
 
-class TowerManager
-{
+class TowerManager {
 private:
 	static bool instanceFlag;
 	static TowerManager* instance;
@@ -16,12 +15,7 @@ private:
 	
 	list<Tower*> Team_1_towers;
 	list<Tower*> Team_2_towers;
-
-
-
-
 public:
-
 	static TowerManager* GetInstance();
 	~TowerManager()
 	{
@@ -35,9 +29,7 @@ public:
 	bool KeyBoardClicked(SDL_Point mouse);
 	void DisasterOccured(int type);
 	bool collidingWithTower(SDL_Rect pos, int team);
-
 	int TeamsOneMinions;
 	int TeamsTwoMinions;
-	
 };
 #endif

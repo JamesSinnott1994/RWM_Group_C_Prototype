@@ -191,6 +191,7 @@ bool Minion::colliding(SDL_Rect pos , int rad)
 	}
 	return false;
 }
+
 void Minion::doDamage(int dmg)
 {
 	m_health -= dmg;

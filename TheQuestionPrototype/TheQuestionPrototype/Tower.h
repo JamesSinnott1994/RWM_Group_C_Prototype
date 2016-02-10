@@ -43,7 +43,7 @@ private:
 	
 
 	float timeSinceAttack;
-	int health;
+	__int8 health;
 	bool displayStats;
 
 	bool stormProof, volcanoProof, floodProof, earthquakeProof;

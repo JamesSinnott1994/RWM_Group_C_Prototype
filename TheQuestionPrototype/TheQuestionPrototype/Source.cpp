@@ -52,6 +52,7 @@ int main()
 			{
 				return 0;
 			}
+#pragma endregion
 
 			MinionManager::GetInstance()->addMinion(300, 100, 1);
 			MinionManager::GetInstance()->addMinion(300, 300, 1);
@@ -78,42 +79,33 @@ int main()
 			current_time = SDL_GetTicks();
 			float ftime;//time between frames
 
-			while (!quit)
-			{
-
+			while (!quit) {
 				// Update the timing information
 				old_time = current_time;
 				current_time = SDL_GetTicks();
 				ftime = (current_time - old_time) / 1000.0f;// Seconds
-				//cout << ftime << endl;
 
-				
-				//minion->Update(x, y, ftime);
 				MinionManager::GetInstance()->Update(x, y, ftime);
 
 				while (SDL_PollEvent(&e) != 0)
 				{
 					KeyBoardInput::GetInstance()->updateKeyboard(e);
-					switch (e.type)
-					{
-					
-					case SDL_QUIT:
-						quit = true;
-						break;
-
+					switch (e.type) {
+						case SDL_QUIT:
+							quit = true;
+							break;
 					}
 
 					//If a mouse button was pressed
-					if (e.type == SDL_MOUSEBUTTONDOWN)
-					{
+					if (e.type == SDL_MOUSEBUTTONDOWN) {
 						//If the left mouse button was pressed
-						if (e.button.button == SDL_BUTTON_LEFT)
-						{
-							if (e.button.x > BaseManager::GetInstance()->getRect1().x && e.button.x < BaseManager::GetInstance()->getRect1().w + BaseManager::GetInstance()->getRect1().x &&
-								e.button.y > BaseManager::GetInstance()->getRect1().y && e.button.y < BaseManager::GetInstance()->getRect1().h + BaseManager::GetInstance()->getRect1().y) {
+						if (e.button.button == SDL_BUTTON_LEFT) {
+							if (e.button.x > BaseManager::GetInstance()->getRect1().x && 
+								e.button.x < BaseManager::GetInstance()->getRect1().w + BaseManager::GetInstance()->getRect1().x &&
+								e.button.y > BaseManager::GetInstance()->getRect1().y && 
+								e.button.y < BaseManager::GetInstance()->getRect1().h + BaseManager::GetInstance()->getRect1().y) {
 
-								if (GoldManager::GetInstance()->getGold(1) >= 20)
-								{
+								if (GoldManager::GetInstance()->getGold(1) >= 20) {
 									cout << "CREATE MINIONS!!!!" << endl;
 									newMinionX += 100;
 									MinionManager::GetInstance()->addMinion(newMinionX, 100, 1);
@@ -124,19 +116,14 @@ int main()
 								}
 							}
 							// Base clicked
-
-							SDL_Point mouse = { e.button.x, e.button.y};
-
 							MinionManager::GetInstance()->SelectedMouse(e.button.x, e.button.y);
 							x = e.button.x;
 							y = e.button.y;
 
-							if (TowerManager::GetInstance()->mouseClicked(mouse))
-							{
+							if (TowerManager::GetInstance()->mouseClicked({ e.button.x, e.button.y })) {
 								TowerManager::GetInstance()->TeamsOneMinions -= 1;
 
-								for each(Minion * minion in *MinionManager::GetInstance()->ReturnMinionsTeam1())
-								{
+								for each(Minion * minion in *MinionManager::GetInstance()->ReturnMinionsTeam1()) {
 									if (minion->InTower)
 									{
 										SDL_Rect temp = minion->getRect();
