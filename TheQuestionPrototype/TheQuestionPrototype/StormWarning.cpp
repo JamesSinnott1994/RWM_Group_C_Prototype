@@ -1,5 +1,6 @@
 #include "StormWarning.h"
 #include "TowerManager.h"
+#include "MinionManager.h"
 
 bool StormWarning::instanceFlag = false;
 StormWarning* StormWarning::instance = NULL;
@@ -65,6 +66,7 @@ void StormWarning::Update(float ftime)
 		{
 			std::cout << "Disaster occuring" << std::endl;
 			TowerManager::GetInstance()->DisasterOccured(disasterType);
+			MinionManager::GetInstance()->DisasterOccured(disasterType);
 			disasterToOccur = false;
 		}
 	}

@@ -21,8 +21,15 @@ void MinionManager::Init( SDL_Renderer* gRenderer)
 {
 
 }
-void MinionManager::Selected(int mouseX, int mouseY){
-	for each  (Minion* minion in minions){
+void MinionManager::SelectedMouse(int mouseX, int mouseY){
+	for each  (Minion* minion in minions_Team1){
+
+		minion->Selected(mouseX, mouseY);
+	}
+}
+void MinionManager::SelectedKeyboard(int mouseX, int mouseY)
+{
+	for each  (Minion* minion in minions_Team2){
 
 		minion->Selected(mouseX, mouseY);
 	}
@@ -31,25 +38,49 @@ void MinionManager::Selected(int mouseX, int mouseY){
 void MinionManager::addMinion(int x, int y, int team)
 {
 	Minion* temp = new Minion(x,y,team);
-
-	minions.push_back(temp);
+	if (team == 1)
+	{
+		minions_Team1.push_back(temp);
+	}
+	if (team == 2)
+	{
+		minions_Team2.push_back(temp);
+	}
+	
 }
 void MinionManager::Update(int mouseX, int mouseY, float t){
 
-	for each  (Minion* minion in minions){
+	for each  (Minion* minion in minions_Team1){
+
+		minion->Update(mouseX, mouseY, t);
+	}
+	for each  (Minion* minion in minions_Team2){
 
 		minion->Update(mouseX, mouseY, t);
 	}
 }
 void MinionManager::Draw(){
 
-	for each  (Minion* minion in minions){
+	for each  (Minion* minion in minions_Team1){
+
+		minion->Draw();
+	}
+	for each  (Minion* minion in minions_Team2){
 
 		minion->Draw();
 	}
 }
 
-std::list<Minion*>* MinionManager::ReturnMinions()
+
+void MinionManager::DisasterOccured(int type)
 {
-	return &minions;
+	for each(Minion* minion in minions_Team1)
+	{
+		minion->Disaster(type);
+	}
+	for each(Minion* minion in minions_Team2)
+	{
+		minion->Disaster(type);
+	}
+
 }

@@ -18,10 +18,12 @@ public:
 
 	SDL_Rect getRect();
 	
+	void Disaster(int);
 
 private:
 	//variables
 	SDL_Texture* text;
+	SDL_Texture* healthBar;
 	SDL_Rect src, dest;
 	SDL_Point offset;
 	int team;
@@ -37,7 +39,7 @@ private:
 	bool recentlyMoved;
 	float time;
 	//methods
-	
 	void Move(int, int);
+
 };
 

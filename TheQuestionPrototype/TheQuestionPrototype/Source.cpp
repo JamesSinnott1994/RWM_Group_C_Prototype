@@ -50,9 +50,13 @@ int main()
 				return 0;
 			}
 
-			MinionManager::GetInstance()->addMinion(300, 300, 0);
-			MinionManager::GetInstance()->addMinion(420, 420, 0);
-			MinionManager::GetInstance()->addMinion(69, 69, 0);		
+			MinionManager::GetInstance()->addMinion(300, 100, 1);
+			MinionManager::GetInstance()->addMinion(300, 300, 1);
+			MinionManager::GetInstance()->addMinion(300, 500, 1);	
+
+			MinionManager::GetInstance()->addMinion(700, 100, 2);
+			MinionManager::GetInstance()->addMinion(700, 300, 2);
+			MinionManager::GetInstance()->addMinion(700, 500, 2);
 
 			TowerManager::GetInstance()->addTower(1, 100, 100);
 
@@ -107,7 +111,7 @@ int main()
 							SDL_Point mouse = { e.button.x, e.button.y};
 
 							TowerManager::GetInstance()->mouseClicked(mouse);
-							MinionManager::GetInstance()->Selected(e.button.x, e.button.y);
+							MinionManager::GetInstance()->SelectedMouse(e.button.x, e.button.y);
 							x = e.button.x;
 							y = e.button.y;
 						}
@@ -118,7 +122,7 @@ int main()
 					{
 
 						int t = 0;
-						MinionManager::GetInstance()->Selected(playertwo::GetInstance()->getRect().x + (playertwo::GetInstance()->getRect().w / 2), playertwo::GetInstance()->getRect().y + (playertwo::GetInstance()->getRect().h / 2));
+						MinionManager::GetInstance()->SelectedKeyboard(playertwo::GetInstance()->getRect().x + (playertwo::GetInstance()->getRect().w / 2), playertwo::GetInstance()->getRect().y + (playertwo::GetInstance()->getRect().h / 2));
 						//for each(Minion *minion in *MinionManager::GetInstance()->ReturnMinions())
 						//{
 						/*if (minion->getRect().x > playertwo::GetInstance()->getRect().x + playertwo::GetInstance()->getRect().w
