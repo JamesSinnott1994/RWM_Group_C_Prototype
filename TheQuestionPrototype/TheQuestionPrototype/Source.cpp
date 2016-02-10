@@ -29,6 +29,8 @@ int main()
 	int newMinionX = 400;
 	int newMinionX2 = 400;
 	int newMinionY2 = 480;
+	bool buildTower1 = false, buildTower2 = false;
+	
 
 	//SDL
 #pragma region SDL STUFF
@@ -90,9 +92,12 @@ int main()
 				
 				//minion->Update(x, y, ftime);
 				MinionManager::GetInstance()->Update(x, y, ftime);
-
+				
 				while (SDL_PollEvent(&e) != 0)
 				{
+
+					
+
 					KeyBoardInput::GetInstance()->updateKeyboard(e);
 					switch (e.type)
 					{
@@ -130,7 +135,15 @@ int main()
 							MinionManager::GetInstance()->SelectedMouse(e.button.x, e.button.y);
 							x = e.button.x;
 							y = e.button.y;
-
+							if (buildTower1)
+							{
+								if (GoldManager::GetInstance()->getGold(1) >= 200)
+								{
+									TowerManager::GetInstance()->addTower(1, x, y);
+									GoldManager::GetInstance()->subtractGold(200, 1);
+								}
+								buildTower1 = false;
+							}
 							if (TowerManager::GetInstance()->mouseClicked(mouse))
 							{
 								TowerManager::GetInstance()->TeamsOneMinions -= 1;
@@ -150,9 +163,27 @@ int main()
 						}
 					}
 
+					if (KeyBoardInput::GetInstance()->isKeyPressed(SDLK_b))
+					{
+						buildTower1 = true;
+					}
+					if (KeyBoardInput::GetInstance()->isKeyPressed(SDLK_v))
+					{
+						buildTower2 = true;
+					}
 					// Check if player two mouse is over minion
 					if (KeyBoardInput::GetInstance()->isKeyPressed(SDLK_TAB))
 					{
+						if (buildTower2)
+						{
+							if (GoldManager::GetInstance()->getGold(2) >= 200)
+							{
+								TowerManager::GetInstance()->addTower(2, playertwo::GetInstance()->getRect().x, playertwo::GetInstance()->getRect().y);
+								GoldManager::GetInstance()->subtractGold(200,2);
+							}
+							buildTower2 = false;
+						}
+
 						if (playertwo::GetInstance()->getRect().x > BaseManager::GetInstance()->getRect2().x && playertwo::GetInstance()->getRect().x < BaseManager::GetInstance()->getRect2().w + BaseManager::GetInstance()->getRect2().x &&
 							playertwo::GetInstance()->getRect().y > BaseManager::GetInstance()->getRect2().y && playertwo::GetInstance()->getRect().y < BaseManager::GetInstance()->getRect2().h + BaseManager::GetInstance()->getRect2().y) {
 							if (GoldManager::GetInstance()->getGold(2) >= 20)

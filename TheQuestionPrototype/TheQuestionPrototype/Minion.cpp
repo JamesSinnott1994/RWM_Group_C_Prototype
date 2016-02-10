@@ -1,6 +1,7 @@
 #include "Minion.h"
 #include "Renderer.h"
 #include <SDL_image.h>
+#include "GoldManager.h"
 
 
 
@@ -194,4 +195,11 @@ bool Minion::colliding(SDL_Rect pos , int rad)
 void Minion::doDamage(int dmg)
 {
 	m_health -= dmg;
+	if (m_health <= 0)
+	{
+		if (team == 1)
+		GoldManager::GetInstance()->addGold(50,2);
+		if (team == 2)
+			GoldManager::GetInstance()->addGold(50, 1);
+	}
 }
