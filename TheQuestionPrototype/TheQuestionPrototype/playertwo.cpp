@@ -27,24 +27,24 @@ void playertwo::Init()
 
 }
 
-void playertwo::Update()
+void playertwo::Update(float time)
 {
 	// Move mouse
 	if (KeyBoardInput::GetInstance()->isKeyPressed(SDLK_w))
 	{
-		y -= 0.05f;
+		y -= 600 * time;
 	}
 	if (KeyBoardInput::GetInstance()->isKeyPressed(SDLK_s))
 	{
-		y += 0.05f;
+		y += 600 * time;
 	}
 	if (KeyBoardInput::GetInstance()->isKeyPressed(SDLK_a))
 	{
-		x -= 0.05f;
+		x -= 600 * time;
 	}
 	if (KeyBoardInput::GetInstance()->isKeyPressed(SDLK_d))
 	{
-		x += 0.05f;
+		x += 600 * time;
 	}
 
 	// Select minion

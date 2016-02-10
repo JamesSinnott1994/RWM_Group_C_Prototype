@@ -33,7 +33,7 @@ public:
 		instanceFlag = false;
 	}
 	void Init();
-	void Update();
+	void Update(float time);
 	void Draw();
 
 	SDL_Rect getRect();

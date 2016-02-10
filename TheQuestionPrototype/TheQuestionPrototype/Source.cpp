@@ -201,7 +201,7 @@ int main() {
 				//update entities
 				//StormWarning::GetInstance()->Update(ftime);
 				TowerManager::GetInstance()->Update(ftime);
-				playertwo::GetInstance()->Update();
+				playertwo::GetInstance()->Update(ftime);
 				BaseManager::GetInstance()->Update(ftime);
 				//Put Minions into their turrets
 				for each(Minion * minion in *MinionManager::GetInstance()->ReturnMinionsTeam1()) {
