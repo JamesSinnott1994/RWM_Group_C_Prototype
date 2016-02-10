@@ -38,11 +38,11 @@ void TowerManager::Draw()
 	/*Call Draw on objects here*/
 	for each(Tower * t in Team_1_towers)
 	{
-		t->Draw();
+		t->Draw(TeamsOneMinions, 1);
 	}
 	for each(Tower * t in Team_2_towers)
 	{
-		t->Draw();
+		t->Draw(TeamsTwoMinions, 2);
 	}
 }
 void TowerManager::Update(float time)
@@ -77,19 +77,19 @@ void TowerManager::Update(float time)
 	}
 	
 }
-void TowerManager::mouseClicked(SDL_Point mouse)
+bool TowerManager::mouseClicked(SDL_Point mouse)
 {
 	for each(Tower * t in Team_1_towers)
 	{
-		t->mouseClicked(mouse);
+		return t->mouseClicked(mouse, TeamsOneMinions);
 	}
 
 }
-void TowerManager::KeyBoardClicked(SDL_Point mouse)
+bool TowerManager::KeyBoardClicked(SDL_Point mouse)
 {
 	for each(Tower * t in Team_2_towers)
 	{
-		t->mouseClicked(mouse);
+		return t->mouseClicked(mouse, TeamsTwoMinions);
 	}
 }
 void TowerManager::DisasterOccured(int type)

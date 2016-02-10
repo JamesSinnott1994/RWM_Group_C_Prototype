@@ -5,15 +5,16 @@
 #include "Renderer.h"
 #include <SDL.h>
 #include <SDL_image.h>
+#include <list>
 
 
 class Tower{
 public:
 	Tower(int x, int y, int team);
-	void Draw();
+	void Draw(int noOfMinions, int team);
 	void update(float time);
 	SDL_Texture* loadTexture(std::string path, SDL_Renderer* gRenderer);
-	void mouseClicked(SDL_Point mouse);
+	bool mouseClicked(SDL_Point mouse, int noOfMinions);
 	void Disaster(int identifier);
 	bool getAlive(){ return alive; }
 	void setDamage(int dmg);
@@ -32,6 +33,12 @@ private:
 	Uint32 last_mouse_clicked_time;
 	bool alive;
 	int m_team;
+
+	int NoOfTeam1Minions;
+	int NoOfTeam2Minions;
+
+	std::list<SDL_Rect> minionTeam1Rects;
+	std::list<SDL_Rect> minionTeam2Rects;
 	
 
 	float timeSinceAttack;
@@ -40,7 +47,7 @@ private:
 
 	bool stormProof, volcanoProof, floodProof, earthquakeProof;
 	
-	
+	SDL_Rect rect;
 };
 
 #endif

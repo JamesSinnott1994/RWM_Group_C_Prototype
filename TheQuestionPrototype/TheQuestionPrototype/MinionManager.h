@@ -27,6 +27,10 @@ public:
 	void SelectedKeyboard(int mouseX, int mouseY);
 	static const int REDTEAM = 0, BLUETEAM = 1;
 	void DisasterOccured(int type);
+
+	std::list<Minion*>* ReturnMinionsTeam1();
+	std::list<Minion*>* ReturnMinionsTeam2();
+
 	void attackMinion(int team, int damage, SDL_Rect towerpos);
 	std::list<Minion*>* ReturnMinions();
 
