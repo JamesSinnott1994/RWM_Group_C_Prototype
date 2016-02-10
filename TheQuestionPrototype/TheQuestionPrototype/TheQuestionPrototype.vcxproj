@@ -75,21 +75,27 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Base.cpp" />
     <ClCompile Include="KeyBoardInput.cpp" />
     <ClCompile Include="Minion.cpp" />
     <ClCompile Include="MinionManager.cpp" />
     <ClCompile Include="Renderer.cpp" />
     <ClCompile Include="Source.cpp" />
     <ClCompile Include="Sprite.cpp" />
+    <ClCompile Include="StormWarning.cpp" />
     <ClCompile Include="tower.cpp" />
+    <ClCompile Include="TowerManager.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Base.h" />
     <ClInclude Include="KeyBoardInput.h" />
     <ClInclude Include="Minion.h" />
     <ClInclude Include="MinionManager.h" />
     <ClInclude Include="Renderer.h" />
     <ClInclude Include="Sprite.h" />
+    <ClInclude Include="StormWarning.h" />
     <ClInclude Include="Tower.h" />
+    <ClInclude Include="TowerManager.h" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="minion.png" />

@@ -39,6 +39,15 @@
     <ClCompile Include="MinionManager.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="TowerManager.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Base.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="StormWarning.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="KeyBoardInput.h">
@@ -64,5 +73,14 @@
     <Image Include="minion.png">
       <Filter>Art</Filter>
     </Image>
+    <ClInclude Include="TowerManager.h">
+	   <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Base.h">
+	   <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="StormWarning.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
