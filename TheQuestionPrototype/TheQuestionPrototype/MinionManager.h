@@ -31,6 +31,9 @@ public:
 	std::list<Minion*>* ReturnMinionsTeam1();
 	std::list<Minion*>* ReturnMinionsTeam2();
 
+	void attackMinion(int team, int damage, SDL_Rect towerpos);
+	std::list<Minion*>* ReturnMinions();
+
 private:
 	MinionManager()
 	{

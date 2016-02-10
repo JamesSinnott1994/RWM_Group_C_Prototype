@@ -176,3 +176,17 @@ void Minion::Disaster(int identifier)
 		m_health -= 20;
 	}
 }
+
+bool Minion::colliding(SDL_Rect pos)
+{
+	if (dest.x < pos.x + pos.w && dest.x + dest.w > pos.x
+		&& dest.y < pos.y + pos.h && dest.y + dest.h > pos.y)
+	{
+		return true;
+	}
+	return false;
+}
+void Minion::doDamage(int dmg)
+{
+	m_health -= dmg;
+}

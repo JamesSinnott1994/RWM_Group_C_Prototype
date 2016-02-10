@@ -20,6 +20,9 @@ public:
 	void setRect(SDL_Rect);
 	
 	void Disaster(int);
+	bool colliding(SDL_Rect pos);
+	void doDamage(int dmg);
+	bool isAlive(){ return m_alive; }
 
 	bool InTower;
 

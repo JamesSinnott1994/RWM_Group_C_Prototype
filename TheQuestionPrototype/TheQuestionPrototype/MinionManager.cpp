@@ -49,14 +49,29 @@ void MinionManager::addMinion(int x, int y, int team)
 	
 }
 void MinionManager::Update(int mouseX, int mouseY, float t){
-
-	for each  (Minion* minion in minions_Team1){
-
-		minion->Update(mouseX, mouseY, t);
+	for (std::list<Minion*>::iterator it = minions_Team1.begin(); it != minions_Team1.end();)
+	{
+		(*it)->Update(mouseX, mouseY, t);
+		if ((*it)->isAlive())
+		{
+			it++;
+		}
+		else
+		{
+			it = minions_Team1.erase(it);
+		}
 	}
-	for each  (Minion* minion in minions_Team2){
-
-		minion->Update(mouseX, mouseY, t);
+	for (std::list<Minion*>::iterator it = minions_Team2.begin(); it != minions_Team2.end();)
+	{
+		(*it)->Update(mouseX, mouseY, t);
+		if ((*it)->isAlive())
+		{
+			it++;
+		}
+		else
+		{
+			it = minions_Team2.erase(it);
+		}
 	}
 }
 void MinionManager::Draw(){
@@ -93,4 +108,30 @@ std::list<Minion*>* MinionManager::ReturnMinionsTeam1()
 std::list<Minion*>* MinionManager::ReturnMinionsTeam2()
 {
 	return &minions_Team2;
+
+}
+void MinionManager::attackMinion(int team, int damage, SDL_Rect towerpos)
+{
+	if (team == 1)
+	{
+		for each  (Minion* minion in minions_Team2){
+
+			if (minion->colliding(towerpos))
+			{
+				minion->doDamage(damage);
+				break;
+			}
+		}
+	}
+	else if (team == 2)
+	{
+		for each  (Minion* minion in minions_Team1){
+
+			if (minion->colliding(towerpos))
+			{
+				minion->doDamage(damage);
+				break;
+			}
+		}
+	}
 }

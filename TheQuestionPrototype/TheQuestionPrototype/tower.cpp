@@ -1,4 +1,5 @@
 #include "Tower.h"
+#include "MinionManager.h"
 
 Tower::Tower(int x, int y , int team)
 {
@@ -100,6 +101,8 @@ void Tower::update(float time)
 	if (timeSinceAttack >= 1)
 	{
 		//do attack here 
+
+		MinionManager::GetInstance()->attackMinion(m_team, 30, dest);
 		timeSinceAttack = 0;
 	}
 	if (health <= 0)
