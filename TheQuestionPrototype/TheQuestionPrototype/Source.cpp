@@ -122,7 +122,11 @@ int main()
 					{
 
 						int t = 0;
-						MinionManager::GetInstance()->SelectedKeyboard(playertwo::GetInstance()->getRect().x + (playertwo::GetInstance()->getRect().w / 2), playertwo::GetInstance()->getRect().y + (playertwo::GetInstance()->getRect().h / 2));
+						MinionManager::GetInstance()->SelectedKeyboard(playertwo::GetInstance()->getRect().x , playertwo::GetInstance()->getRect().y );
+						SDL_Point mouse = { playertwo::GetInstance()->getRect().x, playertwo::GetInstance()->getRect().y };
+
+						TowerManager::GetInstance()->KeyBoardClicked(mouse);
+						
 						//for each(Minion *minion in *MinionManager::GetInstance()->ReturnMinions())
 						//{
 						/*if (minion->getRect().x > playertwo::GetInstance()->getRect().x + playertwo::GetInstance()->getRect().w
@@ -146,11 +150,11 @@ int main()
 				/*Call Draw on objects here*/
 
 				MinionManager::GetInstance()->Draw();
-				playertwo::GetInstance()->Draw();
+				
 				TowerManager::GetInstance()->Draw();
 
 				Base::GetInstance()->Draw();
-
+				playertwo::GetInstance()->Draw();
 				Renderer::GetInstance()->RenderScreen();
 
 				// Escape button

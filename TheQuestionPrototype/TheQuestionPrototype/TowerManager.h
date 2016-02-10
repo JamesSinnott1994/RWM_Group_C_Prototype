@@ -29,6 +29,7 @@ public:
 	void Draw();
 	void Update(float time);
 	void mouseClicked(SDL_Point mouse);
+	void KeyBoardClicked(SDL_Point mouse);
 	void DisasterOccured(int type);
 	
 };

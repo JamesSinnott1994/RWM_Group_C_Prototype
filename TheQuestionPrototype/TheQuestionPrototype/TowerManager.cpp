@@ -83,6 +83,10 @@ void TowerManager::mouseClicked(SDL_Point mouse)
 	{
 		t->mouseClicked(mouse);
 	}
+
+}
+void TowerManager::KeyBoardClicked(SDL_Point mouse)
+{
 	for each(Tower * t in Team_2_towers)
 	{
 		t->mouseClicked(mouse);

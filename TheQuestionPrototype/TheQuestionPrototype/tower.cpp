@@ -8,7 +8,7 @@ Tower::Tower(int x, int y , int team)
 		{
 			src = { 20, 0, 20, 20 };
 		}
-		dest = {x,y,20,20};
+		dest = {x,y,50,100};
 		text = loadTexture("towerImg.png", Renderer::GetInstance()->Get_SDL_RENDERER());
 		statstext = loadTexture("stats.png", Renderer::GetInstance()->Get_SDL_RENDERER());
 		healthBar = loadTexture("healthBar.png", Renderer::GetInstance()->Get_SDL_RENDERER());
