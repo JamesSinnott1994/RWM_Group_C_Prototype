@@ -12,6 +12,7 @@ using namespace std;
 #include "StormWarning.h"
 #include <list>
 #include "MinionManager.h"
+#include "playertwo.h"
 
 //Screen dimension constants
 const int SCREEN_WIDTH = 1248;			//SDL
@@ -23,6 +24,8 @@ int main()
 	//The window we'll be rendering to
 	SDL_Window* window = NULL;
 	int x = 0, y = 0;
+
+	playertwo::GetInstance()->Init();
 
 	//SDL
 #pragma region SDL STUFF
@@ -105,10 +108,29 @@ int main()
 							y = e.button.y;
 						}
 					}
+
+					// Check if player two mouse is over minion
+					if (KeyBoardInput::GetInstance()->isKeyPressed(SDLK_TAB))
+					{
+
+						int t = 0;
+						MinionManager::GetInstance()->Selected(playertwo::GetInstance()->getRect().x + (playertwo::GetInstance()->getRect().w / 2), playertwo::GetInstance()->getRect().y + (playertwo::GetInstance()->getRect().h / 2));
+						//for each(Minion *minion in *MinionManager::GetInstance()->ReturnMinions())
+						//{
+						/*if (minion->getRect().x > playertwo::GetInstance()->getRect().x + playertwo::GetInstance()->getRect().w
+						&& minion->getRect().x + minion->getRect().w < playertwo::GetInstance()->getRect().x
+						&& minion->getRect().y > playertwo::GetInstance()->getRect().y + playertwo::GetInstance()->getRect().h
+						&& minion->getRect().y + minion->getRect().h < playertwo::GetInstance()->getRect().y)
+						{
+
+						}*/
+						//}
+					}
 				}
 				//update 
 				StormWarning::GetInstance()->Update(ftime);
 				TowerManager::GetInstance()->Update(ftime);
+				playertwo::GetInstance()->Update();
 
 				//draw
 				Renderer::GetInstance()->ClearRenderer();
@@ -116,7 +138,7 @@ int main()
 				/*Call Draw on objects here*/
 
 				MinionManager::GetInstance()->Draw();
-
+				playertwo::GetInstance()->Draw();
 				TowerManager::GetInstance()->Draw();
 
 				Base::GetInstance()->Draw();

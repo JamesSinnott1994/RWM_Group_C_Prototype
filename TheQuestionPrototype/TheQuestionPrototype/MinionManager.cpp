@@ -48,3 +48,8 @@ void MinionManager::Draw(){
 		minion->Draw();
 	}
 }
+
+std::list<Minion*>* MinionManager::ReturnMinions()
+{
+	return &minions;
+}
