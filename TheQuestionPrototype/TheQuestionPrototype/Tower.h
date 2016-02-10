@@ -16,6 +16,9 @@ public:
 	void mouseClicked(SDL_Point mouse);
 	void Disaster(int identifier);
 	bool getAlive(){ return alive; }
+	void setDamage(int dmg);
+	bool collidingWithTower(SDL_Rect pos);
+
 private:
 	SDL_Texture* text;
 	SDL_Texture* healthBar;

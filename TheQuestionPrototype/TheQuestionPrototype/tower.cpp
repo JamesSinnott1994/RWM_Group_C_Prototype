@@ -161,3 +161,18 @@ void Tower::mouseClicked(SDL_Point mouse)
 		}
 
 }
+bool Tower::collidingWithTower(SDL_Rect pos)
+{
+	if (dest.x < pos.x + pos.w && dest.x + dest.w > pos.x 
+		&& dest.y < pos.y + pos.h && dest.y + dest.h > pos.y)
+	{
+		return true;
+	}
+	return false;
+}
+
+
+void Tower::setDamage(int dmg)
+{
+	health -= dmg;
+}

@@ -17,6 +17,7 @@ private:
 	list<Tower*> Team_1_towers;
 	list<Tower*> Team_2_towers;
 
+
 public:
 
 	static TowerManager* GetInstance();
@@ -31,6 +32,7 @@ public:
 	void mouseClicked(SDL_Point mouse);
 	void KeyBoardClicked(SDL_Point mouse);
 	void DisasterOccured(int type);
+	bool collidingWithTower(SDL_Rect pos, int team);
 	
 };
 #endif

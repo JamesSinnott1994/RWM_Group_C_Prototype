@@ -103,3 +103,29 @@ void TowerManager::DisasterOccured(int type)
 		t->Disaster(type);
 	}
 }
+
+bool TowerManager::collidingWithTower(SDL_Rect pos, int team)
+{
+	if (team == 1)
+	{
+
+		for each(Tower * t in Team_1_towers)
+		{
+			if (t->collidingWithTower(pos))
+			{
+				return true;
+			}
+		}
+	}
+	if (team == 2)
+	{
+
+		for each(Tower * t in Team_2_towers)
+		{
+			if (t->collidingWithTower(pos))
+			{
+				return true;
+			}
+		}
+	}
+}
