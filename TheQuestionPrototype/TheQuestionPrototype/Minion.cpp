@@ -20,9 +20,14 @@ Minion::Minion(int x, int y, int teamColour)
 	m_selectCheck = false;
 	recentlyMoved = false;
 
-	src = { 0, 0, m_width, m_height };
+	if (team == 1)
+		src = { 0, 0, m_width, m_height };
+	else if (team == 2)
+		src = { m_width, 0, m_width, m_height };
+
 	dest = { m_x, m_y, m_width, m_height };
 	text = loadTexture("minion.png", Renderer::GetInstance()->Get_SDL_RENDERER());
+	healthBar = loadTexture("healthBar.png", Renderer::GetInstance()->Get_SDL_RENDERER());
 }
 
 Minion::~Minion()
@@ -31,8 +36,15 @@ Minion::~Minion()
 
 void Minion::Draw()
 {
-	dest = { m_x, m_y, m_width, m_height };
-	Renderer::GetInstance()->DrawImageNoOffset(&src, &dest, text, 0, &offset);
+	if (m_alive == true)
+	{
+		SDL_Rect src1, dest1;
+		src1 = { 0, 0, 95, 10 };
+		dest1 = { dest.x + 25, dest.y + 5, m_health * 0.95f, 10 };
+		Renderer::GetInstance()->DrawImageNoOffset(&src1, &dest1, healthBar, 0, &offset);
+		dest = { m_x, m_y, m_width, m_height };
+		Renderer::GetInstance()->DrawImageNoOffset(&src, &dest, text, 0, &offset);
+	}
 }
 
 SDL_Texture* Minion::loadTexture(std::string path, SDL_Renderer* gRenderer){
@@ -63,6 +75,12 @@ void Minion::Update(int mouseX, int mouseY, float t)
 	time += t;
 	if (m_alive == true)
 	{
+		if (m_health <= 0)
+		{
+			m_alive = false;
+		}
+
+
 		if (time > 1)
 		{
 			recentlyMoved = false;
@@ -116,4 +134,23 @@ void Minion::Selected(int mouseX, int mouseY)
 			}
 		
 		}	
+}
+void Minion::Disaster(int identifier)
+{
+	if (identifier == 1)//storm
+	{
+		m_health -= 20;
+	}
+	else if (identifier == 2)//volcano
+	{
+		m_health -= 20;
+	}
+	else if (identifier == 3)//flood
+	{
+		m_health -= 20;
+	}
+	else if (identifier == 4)//earthq
+	{
+		m_health -= 20;
+	}
 }

@@ -15,11 +15,12 @@ public:
 	bool getSelected() { return m_selected; }
 	void Attack();
 	void WeatherEffect();
-	
+	void Disaster(int);
 
 private:
 	//variables
 	SDL_Texture* text;
+	SDL_Texture* healthBar;
 	SDL_Rect src, dest;
 	SDL_Point offset;
 	int team;
@@ -35,7 +36,7 @@ private:
 	bool recentlyMoved;
 	float time;
 	//methods
-	
 	void Move(int, int);
+
 };
 

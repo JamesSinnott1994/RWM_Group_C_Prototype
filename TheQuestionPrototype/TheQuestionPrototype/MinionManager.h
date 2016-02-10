@@ -25,16 +25,16 @@ public:
 	void Update(int mouseX, int mouseY, float t);
 	void Selected(int mouseX, int mouseY);
 	static const int REDTEAM = 0, BLUETEAM = 1;
+	void DisasterOccured(int type);
 
 private:
 	MinionManager()
 	{
 		minions = std::list<Minion*>();
-		
 	}
 	std::list<Minion*> minions;
 	static bool instanceFlag;
 	static MinionManager* instance;
-
+	
 };
 

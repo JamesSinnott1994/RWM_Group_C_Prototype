@@ -48,3 +48,11 @@ void MinionManager::Draw(){
 		minion->Draw();
 	}
 }
+
+void MinionManager::DisasterOccured(int type)
+{
+	for each(Minion* minion in minions)
+	{
+		minion->Disaster(type);
+	}
+}
