@@ -84,3 +84,13 @@ void MinionManager::DisasterOccured(int type)
 	}
 
 }
+
+std::list<Minion*>* MinionManager::ReturnMinionsTeam1()
+{
+	return &minions_Team1;
+}
+
+std::list<Minion*>* MinionManager::ReturnMinionsTeam2()
+{
+	return &minions_Team2;
+}

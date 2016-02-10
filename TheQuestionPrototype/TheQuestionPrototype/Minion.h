@@ -17,8 +17,11 @@ public:
 	void WeatherEffect();
 
 	SDL_Rect getRect();
+	void setRect(SDL_Rect);
 	
 	void Disaster(int);
+
+	bool InTower;
 
 private:
 	//variables

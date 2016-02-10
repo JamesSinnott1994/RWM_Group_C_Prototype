@@ -18,6 +18,8 @@ private:
 	list<Tower*> Team_2_towers;
 
 
+
+
 public:
 
 	static TowerManager* GetInstance();
@@ -29,10 +31,13 @@ public:
 	void addTower(int team, float x, float y);
 	void Draw();
 	void Update(float time);
-	void mouseClicked(SDL_Point mouse);
-	void KeyBoardClicked(SDL_Point mouse);
+	bool mouseClicked(SDL_Point mouse);
+	bool KeyBoardClicked(SDL_Point mouse);
 	void DisasterOccured(int type);
 	bool collidingWithTower(SDL_Rect pos, int team);
+
+	int TeamsOneMinions;
+	int TeamsTwoMinions;
 	
 };
 #endif

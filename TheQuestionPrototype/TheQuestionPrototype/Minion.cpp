@@ -20,6 +20,8 @@ Minion::Minion(int x, int y, int teamColour)
 	m_selectCheck = false;
 	recentlyMoved = false;
 
+	InTower = false;
+
 	if (team == 1)
 		src = { 0, 0, m_width, m_height };
 	else if (team == 2)
@@ -36,7 +38,7 @@ Minion::~Minion()
 
 void Minion::Draw()
 {
-	if (m_alive == true)
+	if (m_alive == true && !InTower)
 	{
 		SDL_Rect src1, dest1;
 		src1 = { 0, 0, 95, 10 };
@@ -111,7 +113,10 @@ void Minion::Move(int mouseX, int mouseY)
 }
 void Minion::Selected(int mouseX, int mouseY)
 {
-	if ((mouseX > m_x && mouseX < m_x + m_width) && (mouseY > m_y && mouseY < m_y + m_height))
+	if (!InTower)
+	{
+
+		if ((mouseX > m_x && mouseX < m_x + m_width) && (mouseY > m_y && mouseY < m_y + m_height))
 		{
 			if (recentlyMoved == false)
 			{
@@ -132,8 +137,9 @@ void Minion::Selected(int mouseX, int mouseY)
 				m_selectCheck = false;
 				printf("Unselected ");
 			}
-		
-		}	
+
+		}
+	}
 }
 
 
@@ -141,6 +147,16 @@ SDL_Rect Minion::getRect()
 {
 	return dest;
 }
+
+void Minion::setRect(SDL_Rect pos)
+{
+	m_x = pos.x;
+	m_y = pos.y;
+
+	dest.x = m_x;
+	dest.y = m_y;
+}
+
 void Minion::Disaster(int identifier)
 {
 	if (identifier == 1)//storm

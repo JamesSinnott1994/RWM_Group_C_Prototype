@@ -27,15 +27,24 @@ Tower::Tower(int x, int y , int team)
 		alive = true;
 }
 
-void Tower::Draw()
+void Tower::Draw(int noOfMinions, int team)
 {
 	Renderer::GetInstance()->DrawImageNoOffset(&src, &dest, text, 0, &offset);
 
+	if (team == 1)
+		NoOfTeam1Minions = noOfMinions;
+	else
+		NoOfTeam2Minions = noOfMinions;
+
 	if (displayStats)
 	{
+		SDL_Rect src3, dest3;
+		SDL_Rect src2, dest2;
 		SDL_Rect src1, dest1;
 		src1 = {0,0,105,50};
-		dest1 = { dest.x + 20, dest.y, 105, 50 };
+		src2 = { 0, 0, 105, 50 };
+		dest1 = { dest.x + 20, dest.y, 105, 100 };
+		dest2 = { dest.x + 20, dest.y, 105, 100 };
 		Renderer::GetInstance()->DrawImageNoOffset(&src1, &dest1, statstext, 0, &offset);
 		src1 = { 0, 0, 95, 10 };
 		dest1 = { dest.x + 25, dest.y + 5, health * 0.95f, 10 };
@@ -44,6 +53,8 @@ void Tower::Draw()
 		{
 			src1 = { 0, 0, 20, 20 };
 			dest1 = { dest.x + 25, dest.y + 20, 20, 20 };
+			src3 = { 0, 0, 20, 20 };
+			dest3 = { dest.x + 50, dest.y + 20, 20, 20 };
 			Renderer::GetInstance()->DrawImageNoOffset(&src1, &dest1, storm, 0, &offset);
 		}
 		if (!volcanoProof)
@@ -66,8 +77,21 @@ void Tower::Draw()
 			dest1 = { dest.x + 100, dest.y + 20, 20, 20 };
 			Renderer::GetInstance()->DrawImageNoOffset(&src1, &dest1, eathq, 0, &offset);
 		}
-		
 
+		rect = dest;
+		rect.x += 0;
+		rect.y += 50;
+		rect.w = 20;
+		rect.h = 20;
+
+		// Draw number of minions
+		for (int i = 0; i < noOfMinions; i++)
+		{
+			rect.x += 25;
+
+			SDL_SetRenderDrawColor(Renderer::GetInstance()->Get_SDL_RENDERER(), 0, 0, 0, 255);// Grey
+			SDL_RenderFillRect(Renderer::GetInstance()->Get_SDL_RENDERER(), &rect);
+		}
 	}
 }
 void Tower::update(float time)
@@ -83,6 +107,7 @@ void Tower::update(float time)
 		alive = false;
 	}
 }
+
 void Tower::Disaster(int identifier)
 {
 	if (identifier == 1 && !stormProof)//storm
@@ -127,8 +152,17 @@ SDL_Texture* Tower::loadTexture(std::string path, SDL_Renderer* gRenderer){
 	return newTexture;
 }
 
-void Tower::mouseClicked(SDL_Point mouse)
+bool Tower::mouseClicked(SDL_Point mouse, int noOfMinions)
 {
+	// Remove minions
+		if (noOfMinions > 0
+			&& mouse.x > rect.x && mouse.x < rect.x + rect.w
+			&& mouse.y > rect.y && mouse.y < rect.y + rect.h)
+		{
+			std::cout << "!!!!!!!!!!!!!!!!!!!!!!!!!!!" << std::endl;
+			return true;
+		}
+
 	
 		if (mouse.x < dest.x + dest.w && mouse.x > dest.x
 			&&mouse.y < dest.y + dest.h && mouse.y > dest.y)
@@ -160,7 +194,10 @@ void Tower::mouseClicked(SDL_Point mouse)
 			earthquakeProof = true;
 		}
 
+		return false;
+
 }
+
 bool Tower::collidingWithTower(SDL_Rect pos)
 {
 	if (dest.x < pos.x + pos.w && dest.x + dest.w > pos.x 

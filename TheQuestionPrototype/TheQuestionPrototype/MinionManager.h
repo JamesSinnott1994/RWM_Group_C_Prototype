@@ -28,7 +28,8 @@ public:
 	static const int REDTEAM = 0, BLUETEAM = 1;
 	void DisasterOccured(int type);
 
-	std::list<Minion*>* ReturnMinions();
+	std::list<Minion*>* ReturnMinionsTeam1();
+	std::list<Minion*>* ReturnMinionsTeam2();
 
 private:
 	MinionManager()
