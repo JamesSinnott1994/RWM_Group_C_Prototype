@@ -112,7 +112,6 @@ int main() {
 							x = e.button.x;
 							y = e.button.y;
 
-							if (TowerManager::GetInstance()->mouseClicked({ e.button.x, e.button.y })) {
 								if (buildTower1)
 								{
 									if (GoldManager::GetInstance()->getGold(1) >= 200)
@@ -122,7 +121,7 @@ int main() {
 									}
 									buildTower1 = false;
 								}
-							}
+							
 							if (TowerManager::GetInstance()->mouseClicked({ e.button.x, e.button.y }))
 							{
 								TowerManager::GetInstance()->TeamsOneMinions -= 1;
@@ -139,32 +138,34 @@ int main() {
 						}
 					}
 
-					if (KeyBoardInput::GetInstance()->isKeyPressed(SDLK_b))
+					if (KeyBoardInput::GetInstance()->isKeyPressed(SDLK_RCTRL))
 					{
 						buildTower1 = true;
 					}
-					if (KeyBoardInput::GetInstance()->isKeyPressed(SDLK_v))
+					if (KeyBoardInput::GetInstance()->isKeyPressed(SDLK_LCTRL))
 					{
 						buildTower2 = true;
 					}
 					// Check if player two mouse is over minion
 					if (KeyBoardInput::GetInstance()->isKeyPressed(SDLK_TAB)) {
+
+						if (GoldManager::GetInstance()->getGold(2) >= 20) {
+							if (buildTower2)
+							{
+								if (GoldManager::GetInstance()->getGold(2) >= 200)
+								{
+									TowerManager::GetInstance()->addTower(2, playertwo::GetInstance()->getRect().x, playertwo::GetInstance()->getRect().y);
+									GoldManager::GetInstance()->subtractGold(200, 2);
+								}
+								buildTower2 = false;
+							}
+						}
+
+
 						if (playertwo::GetInstance()->getRect().x > BaseManager::GetInstance()->getRect2().x &&
 							playertwo::GetInstance()->getRect().x < BaseManager::GetInstance()->getRect2().w + BaseManager::GetInstance()->getRect2().x &&
 							playertwo::GetInstance()->getRect().y > BaseManager::GetInstance()->getRect2().y &&
 							playertwo::GetInstance()->getRect().y < BaseManager::GetInstance()->getRect2().h + BaseManager::GetInstance()->getRect2().y) {
-							if (GoldManager::GetInstance()->getGold(2) >= 20) {
-								if (buildTower2)
-								{
-									if (GoldManager::GetInstance()->getGold(2) >= 200)
-									{
-										TowerManager::GetInstance()->addTower(2, playertwo::GetInstance()->getRect().x, playertwo::GetInstance()->getRect().y);
-										GoldManager::GetInstance()->subtractGold(200, 2);
-									}
-									buildTower2 = false;
-								}
-							}
-
 							if (playertwo::GetInstance()->getRect().x > BaseManager::GetInstance()->getRect2().x && playertwo::GetInstance()->getRect().x < BaseManager::GetInstance()->getRect2().w + BaseManager::GetInstance()->getRect2().x &&
 								playertwo::GetInstance()->getRect().y > BaseManager::GetInstance()->getRect2().y && playertwo::GetInstance()->getRect().y < BaseManager::GetInstance()->getRect2().h + BaseManager::GetInstance()->getRect2().y) {
 								if (GoldManager::GetInstance()->getGold(2) >= 20)
@@ -198,7 +199,7 @@ int main() {
 				}
 				
 				//update entities
-				StormWarning::GetInstance()->Update(ftime);
+				//StormWarning::GetInstance()->Update(ftime);
 				TowerManager::GetInstance()->Update(ftime);
 				playertwo::GetInstance()->Update();
 				BaseManager::GetInstance()->Update(ftime);
