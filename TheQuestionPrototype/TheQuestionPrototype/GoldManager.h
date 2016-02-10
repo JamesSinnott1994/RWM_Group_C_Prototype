@@ -35,9 +35,15 @@ public:
 	void subtractGold(int amount, int team)
 	{
 		if (team == 1)
+		{
 			team1 -= amount;
-		if (team == 2)
+			cout << "Team 1 gold : " << team1 << endl;
+		}
+		else if (team == 2)
+		{
 			team2 -= amount;
+			cout << "Team 2 gold : " << team2 << endl;
+		}
 	}
 
 };
