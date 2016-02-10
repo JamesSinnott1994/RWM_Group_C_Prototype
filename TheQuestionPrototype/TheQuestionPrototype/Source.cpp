@@ -95,6 +95,7 @@ int main()
 				}
 				//update 
 				StormWarning::GetInstance()->Update(ftime);
+				TowerManager::GetInstance()->Update(ftime);
 
 				//draw
 				Renderer::GetInstance()->ClearRenderer();

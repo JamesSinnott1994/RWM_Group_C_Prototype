@@ -15,6 +15,7 @@ public:
 	SDL_Texture* loadTexture(std::string path, SDL_Renderer* gRenderer);
 	void mouseClicked(SDL_Point mouse);
 	void Disaster(int identifier);
+	bool getAlive(){ return alive; }
 private:
 	SDL_Texture* text;
 	SDL_Texture* healthBar;
@@ -26,6 +27,7 @@ private:
 	SDL_Rect src, dest;
 	SDL_Point offset;
 	Uint32 last_mouse_clicked_time;
+	bool alive;
 	
 
 	float timeSinceAttack;

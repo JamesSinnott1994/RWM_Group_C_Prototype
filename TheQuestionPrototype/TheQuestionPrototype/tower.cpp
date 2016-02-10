@@ -20,7 +20,7 @@ Tower::Tower(int x, int y )
 		floodProof = false;
 		earthquakeProof = false;
 		last_mouse_clicked_time = SDL_GetTicks();
-
+		alive = true;
 }
 
 void Tower::Draw()
@@ -73,6 +73,10 @@ void Tower::update(float time)
 	{
 		//do attack here 
 		timeSinceAttack = 0;
+	}
+	if (health <= 0)
+	{
+		alive = false;
 	}
 }
 void Tower::Disaster(int identifier)

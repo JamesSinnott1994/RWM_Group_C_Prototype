@@ -47,15 +47,31 @@ void TowerManager::Draw()
 }
 void TowerManager::Update(float time)
 {
-
-	for each(Tower * t in Team_1_towers)
+	for (list<Tower*>::iterator it = Team_1_towers.begin(); it != Team_1_towers.end();)
 	{
-		t->update(time);
+		(*it)->update(time);
+		if ((*it)->getAlive())
+		{
+			it++;
+		}
+		else
+		{
+			it = Team_1_towers.erase(it);
+		}
 	}
-	for each(Tower * t in Team_2_towers)
+	for (list<Tower*>::iterator it = Team_2_towers.begin(); it != Team_2_towers.end();)
 	{
-		t->update(time);
+		(*it)->update(time);
+		if ((*it)->getAlive())
+		{
+			it++;
+		}
+		else
+		{
+			it = Team_2_towers.erase(it);
+		}
 	}
+	
 }
 void TowerManager::mouseClicked(SDL_Point mouse)
 {
