@@ -14,6 +14,7 @@ using namespace std;
 #include "playertwo.h"
 #include "BaseManager.h"
 #include "GoldManager.h"
+#include "GameObject.h"
 
 //Screen dimension constants
 const int SCREEN_WIDTH = 1248;			//SDL
@@ -63,6 +64,8 @@ int main() {
 			BaseManager::GetInstance()->Init();
 
 			playertwo::GetInstance()->Init();
+
+			GameObject* myObject = new GameObject(new PlayerInputComponent());
 
 			bool quit = false;
 			SDL_Event e;

@@ -7,7 +7,7 @@
 #include <list>
 #include "Minion.h"
 #include "Renderer.h"
-#include <vector>;
+#include <vector>
 
 
 class MinionManager

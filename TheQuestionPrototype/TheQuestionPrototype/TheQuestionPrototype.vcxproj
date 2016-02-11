@@ -92,10 +92,16 @@
   <ItemGroup>
     <ClInclude Include="Base.h" />
     <ClInclude Include="BaseManager.h" />
+    <ClInclude Include="DemoInputComponent.h" />
+    <ClInclude Include="GameObject.h" />
     <ClInclude Include="GoldManager.h" />
+    <ClInclude Include="GraphicsComponent.h" />
+    <ClInclude Include="InputComponent.h" />
     <ClInclude Include="KeyBoardInput.h" />
     <ClInclude Include="Minion.h" />
     <ClInclude Include="MinionManager.h" />
+    <ClInclude Include="PhysicsComponent.h" />
+    <ClInclude Include="PlayerInputComponent.h" />
     <ClInclude Include="playertwo.h" />
     <ClInclude Include="Renderer.h" />
     <ClInclude Include="Sprite.h" />
