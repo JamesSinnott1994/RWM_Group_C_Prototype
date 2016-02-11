@@ -119,7 +119,33 @@ void Tower::update(float time) {
 	}
 
 	if (health <= 0){
-		alive = false;
+		cout << "game paused switch to other game mode " << endl;
+		system("pause");
+		cout << "press 1 to switch team 2 to destroy tower" << endl;
+		int result = 0;
+		cin >> result ;
+		if (result == 1)
+		{
+			if (m_team == 2)
+			{
+				m_team = 1;
+			}
+			else if (m_team == 1)
+			{
+				m_team = 2;
+			}
+			health = 100;
+			src = { 0, 0, 20, 20 };
+			if (m_team == 2)
+			{
+				src = { 20, 0, 20, 20 };
+			}
+		}
+		else 
+		{
+			alive = false;
+		}
+		
 	}
 }
 

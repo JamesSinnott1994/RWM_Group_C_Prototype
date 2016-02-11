@@ -42,7 +42,15 @@ void TowerManager::Update(float time)
 	for (list<Tower*>::iterator it = Team_1_towers.begin(); it != Team_1_towers.end();) {
 		(*it)->update(time);
 		if ((*it)->getAlive()) {
-			it++;
+			if ((*it)->getTeam() == 2)
+			{
+				Team_2_towers.push_back(*it);
+				it = Team_1_towers.erase(it);
+			}
+			else
+			{
+				it++;
+			}
 		}
 		else {
 			it = Team_1_towers.erase(it);
@@ -51,7 +59,15 @@ void TowerManager::Update(float time)
 	for (list<Tower*>::iterator it = Team_2_towers.begin(); it != Team_2_towers.end();) {
 		(*it)->update(time);
 		if ((*it)->getAlive()) {
-			it++;
+			if ((*it)->getTeam() == 1)
+			{
+				Team_1_towers.push_back(*it);
+				it = Team_2_towers.erase(it);
+			}
+			else
+			{
+				it++;
+			}
 		}
 		else {
 			it = Team_2_towers.erase(it);

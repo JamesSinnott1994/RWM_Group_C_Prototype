@@ -20,6 +20,7 @@ public:
 	bool getAlive(){ return alive; }
 	void setDamage(int dmg);
 	bool collidingWithTower(SDL_Rect pos);
+	int getTeam(){ return m_team; }
 
 private:
 	SDL_Texture* text;
