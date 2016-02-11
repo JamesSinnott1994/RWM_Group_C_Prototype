@@ -3,11 +3,19 @@
 
 #include "Base.h"
 #include <iostream>
+#include "Text.h"
 using namespace std;
 
 class GoldManager
 {
 private:
+
+	//Globally used font
+	TTF_Font *gFont = NULL;
+
+	Text goldTeam1Text;
+	Text goldTeam2Text;
+
 
 	int team1;
 	int team2;
@@ -26,6 +34,13 @@ public:
 		delete instance;
 		instanceFlag = false;
 	}
+
+	// Used for drawing text
+	bool initializeTTF();
+	bool loadTTFMedia();
+
+	void Draw();
+
 	void addGold(int amount, int team);
 	int getGold(int team)
 	{
@@ -44,6 +59,7 @@ public:
 			team2 -= amount;
 			cout << "Team 2 gold : " << team2 << endl;
 		}
+		loadTTFMedia();
 	}
 
 };

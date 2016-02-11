@@ -47,13 +47,16 @@ int main() {
 				return 0;
 			}
 
-			MinionManager::GetInstance()->addMinion(300, 100, 1);
-			MinionManager::GetInstance()->addMinion(300, 300, 1);
-			MinionManager::GetInstance()->addMinion(300, 500, 1);	
+		//	MinionManager::GetInstance()->addMinion(300, 100, 1);
+		//	MinionManager::GetInstance()->addMinion(300, 300, 1);
+		//	MinionManager::GetInstance()->addMinion(300, 500, 1);	
 
-			MinionManager::GetInstance()->addMinion(700, 100, 2);
-			MinionManager::GetInstance()->addMinion(700, 300, 2);
-			MinionManager::GetInstance()->addMinion(700, 500, 2);
+		//	MinionManager::GetInstance()->addMinion(700, 100, 2);
+		//	MinionManager::GetInstance()->addMinion(700, 300, 2);
+		//	MinionManager::GetInstance()->addMinion(700, 500, 2);
+
+
+			GoldManager::GetInstance()->initializeTTF();
 
 			TowerManager::GetInstance()->addTower(1, 474, 100);
 			TowerManager::GetInstance()->addTower(1, 774, 100);
@@ -222,6 +225,7 @@ int main() {
 				BaseManager::GetInstance()->Draw();
 				TowerManager::GetInstance()->Draw();
 				MinionManager::GetInstance()->Draw();
+				GoldManager::GetInstance()->Draw();
 				playertwo::GetInstance()->Draw();
 				Renderer::GetInstance()->RenderScreen();
 
