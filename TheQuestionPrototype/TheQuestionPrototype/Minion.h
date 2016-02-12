@@ -13,12 +13,12 @@ public:
 	~Minion();
 	void Draw();
 	SDL_Texture* loadTexture(std::string path, SDL_Renderer* gRenderer);
-	void Update(int,int, float);
+	void Update( float);
 	void Selected(int, int);
 	bool getSelected() { return m_selected; }
 	void Attack();
 	void WeatherEffect();
-
+	SDL_Point target;
 	SDL_Rect getRect();
 	void setRect(SDL_Rect);
 	
@@ -39,7 +39,7 @@ private:
 	float m_moveSpeed;
 	float m_attackSpeed;
 	float m_attackPower;
-	int m_x, m_y;
+	float m_x, m_y;
 	bool m_alive;
 	int m_width, m_height;
 	int m_health;
@@ -50,6 +50,7 @@ private:
 	float timeSinceAttack;
 	//methods
 	void Move(int, int);
+	float dist(int x1, int y1, int x2, int y2);
 
 };
 

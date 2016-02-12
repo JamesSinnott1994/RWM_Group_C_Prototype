@@ -15,7 +15,7 @@ Minion::Minion(int x, int y, int teamColour) : m_x(x), m_y(y), m_team(teamColour
 	m_selected = false;
 	m_selectCheck = false;
 	recentlyMoved = false;
-
+	target = { x, y };
 	InTower = false;
 
 	if (m_team == 1)
@@ -68,7 +68,7 @@ SDL_Texture* Minion::loadTexture(std::string path, SDL_Renderer* gRenderer){
 	return newTexture;
 }
 
-void Minion::Update(int mouseX, int mouseY, float t) {
+void Minion::Update( float t) {
 	time += t;
 	timeSinceAttack += t;
 	if (m_alive == true) {
@@ -81,10 +81,21 @@ void Minion::Update(int mouseX, int mouseY, float t) {
 			time = 0;
 		}
 
-		if (m_selectCheck == false) {
-			Move(mouseX,mouseY);
-		}
+		//if (m_selectCheck == false) {
+		//	Move(mouseX,mouseY);
+		//}
+		if (dist(m_x, m_y, target.x, target.y) > 5)
+		{
 
+			SDL_Point dir = {target.x - m_x, target.y - m_y};
+			float len = sqrt(dir.x*dir.x + dir.y*dir.y);
+			float dirX = dir.x / len;
+			float dirY = dir.y / len;
+
+			m_x += (dirX * time) / 100;
+			m_y += (dirY * time) / 100;
+
+		}
 		if (timeSinceAttack >= m_attackSpeed){
 			TowerManager::GetInstance()->attackTurret(m_team, 10, SDL_Rect{m_x, m_y, dest.w, dest.h} );
 			BaseManager::GetInstance()->attackBase(m_team, 10, SDL_Rect{ m_x, m_y, dest.w, dest.h });
@@ -92,14 +103,20 @@ void Minion::Update(int mouseX, int mouseY, float t) {
 		}
 	}
 }
+float Minion::dist(int x1, int y1, int x2, int y2)
+{
+	SDL_Point dir = { x1 - x2, y1 - y2 };
+	return sqrt(dir.x*dir.x + dir.y*dir.y);
+}
 
 void Minion::Move(int mouseX, int mouseY)
 {
 	if (m_selected == true)
 	{
-		m_x = mouseX - (m_width/2);
-		m_y = mouseY - (m_height / 2);
-		std::cout << m_x << "," << m_y << std::endl;
+		target = { mouseX , mouseY };
+		//m_x = mouseX - (m_width/2);
+		//m_y = mouseY - (m_height / 2);
+		//std::cout << m_x << "," << m_y << std::endl;
 		m_selected = false;
 		m_selectCheck = false;
 		recentlyMoved = true;
