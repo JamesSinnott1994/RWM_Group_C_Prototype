@@ -91,3 +91,8 @@ void Renderer::UpdateCameraPosition(int passX){
 void Renderer::LevelCompleteMoveCamera(){
 	cameraXOffSet = cameraXOffSet - 1;
 }
+
+void Renderer::DrawRect(int x, int y){
+	SDL_SetRenderDrawColor(gRenderer, 0xFF, 0x00, 0x00, 0xFF);
+	SDL_RenderFillRect(gRenderer, &SDL_Rect{ x, y , 20,20});
+}

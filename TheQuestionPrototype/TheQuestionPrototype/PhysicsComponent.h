@@ -5,9 +5,7 @@ class GameObject;
 
 class PhysicsComponent {
 public:
-	void update(GameObject& gameObject) {
-		gameObject.x += gameObject.velocity;
-	}
+	void update(GameObject& gameObject, float time);
 private:
 };
 

@@ -1,15 +1,15 @@
 #ifndef GAMEOBJECT_H
 #define GAMEOBJECT_H
 
-#include "PhysicsComponent.h"
-#include "GraphicsComponent.h"
 #include "PlayerInputComponent.h"
 #include "DemoInputComponent.h"
+#include "GraphicsComponent.h"
+#include "PhysicsComponent.h"
 
 class GameObject {
 public:
-	int velocity;
-	int x, y;
+	int velocityX, velocityY;
+	int x = 200, y = 200;
 
 	GameObject(InputComponent* input): input_(input) {}
 	//Instancize GameObject like so
@@ -18,7 +18,7 @@ public:
 
 	void update(float time){
 		input_->update(*this);
-		physics_.update(*this);
+		physics_.update(*this, time);
 		graphics_.update(*this);
 	}
 private:

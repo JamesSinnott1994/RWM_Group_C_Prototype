@@ -30,31 +30,16 @@
     <ClCompile Include="Sprite.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="tower.cpp">
+    <ClCompile Include="PlayerInputComponent.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Minion.cpp">
+    <ClCompile Include="DemoInputComponent.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="MinionManager.cpp">
+    <ClCompile Include="PhysicsComponent.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="TowerManager.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Base.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="StormWarning.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="playertwo.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="BaseManager.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="GoldManager.cpp">
+    <ClCompile Include="GraphicsComponent.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -68,31 +53,10 @@
     <ClInclude Include="Sprite.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Tower.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Minion.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="MinionManager.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="playertwo.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="BaseManager.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="GoldManager.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="InputComponent.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="GraphicsComponent.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="PhysicsComponent.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="GameObject.h">
@@ -104,19 +68,13 @@
     <ClInclude Include="DemoInputComponent.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="PhysicsComponent.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Image Include="minion.png">
       <Filter>Art</Filter>
     </Image>
-    <ClInclude Include="TowerManager.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Base.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="StormWarning.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
   </ItemGroup>
 </Project>

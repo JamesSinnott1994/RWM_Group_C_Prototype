@@ -1,7 +1,6 @@
 #ifndef _RENDERER_H_
 #define _RENDERER_H_
 
-#include <iostream>
 #include <string>
 #include <cmath>
 #include <fstream>
@@ -30,6 +29,7 @@ public:
 	void ClearRenderer();
 	void RenderScreen();
 	void Draw(SDL_Rect rectangle);
+	void DrawRect(int x, int y);
 	void DrawImage(SDL_Rect*, SDL_Rect*, SDL_Texture*);
 	void DrawImage(SDL_Rect *source, SDL_Rect *dest, SDL_Texture *text, double angle, SDL_Point* centre, float zIndex);
 	void DrawImage(SDL_Rect *source, SDL_Rect *dest, SDL_Texture *text, double angle, SDL_Point* centre);

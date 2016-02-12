@@ -2,7 +2,6 @@
 #define INPUTCOMPONENT_H
 
 class GameObject;
-#include "GameObject.h"
 #include "KeyBoardInput.h"
 
 class InputComponent {
