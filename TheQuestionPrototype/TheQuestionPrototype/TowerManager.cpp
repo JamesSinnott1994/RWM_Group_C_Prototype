@@ -80,14 +80,24 @@ bool TowerManager::mouseClicked(SDL_Point mouse) {
 	for each(Tower * t in Team_1_towers)
 	{
 		temp =  t->mouseClicked(mouse, TeamsOneMinions);
+		if (temp)
+		{
+			return temp;
+		}
 	}
 	return temp;
 }
 
-bool TowerManager::KeyBoardClicked(SDL_Point mouse) {
+bool TowerManager::KeyBoardClicked(SDL_Point mouse) 
+{
 	bool temp = false;
-	for each(Tower * t in Team_2_towers) {
+	for each(Tower * t in Team_2_towers) 
+	{
 		temp = t->mouseClicked(mouse, TeamsTwoMinions);
+		if (temp)
+		{
+			return temp;
+		}
 	}
 	return temp;
 }
@@ -101,31 +111,32 @@ void TowerManager::DisasterOccured(int type) {
 	}
 }
 
-bool TowerManager::collidingWithTower(SDL_Rect pos, int team) {
-	if (team == 1) {
-		for each(Tower * t in Team_1_towers) {
-			if (t->collidingWithTower(pos)) {
+bool TowerManager::collidingWithTower(SDL_Rect pos, int team) 
+{
+	if (team == 1) 
+	{
+		for each(Tower * t in Team_1_towers) 
+		{
+			if (t->collidingWithTower(pos)) 
+			{
+				// t->AddNumMinions();***************
+				t->NoOfMinions += 1;
 				return true;
 			}
 		}
-		/*for each (Tower* t in Team_2_towers){
-			if (t->collidingWithTower(pos)){
-				t->setDamage(1);
-			}
-		}*/
 	}
 	
-	else if (team == 2) {
-		for each(Tower * t in Team_2_towers) {
-			if (t->collidingWithTower(pos)) {
+	else if (team == 2) 
+	{
+		for each(Tower * t in Team_2_towers) 
+		{
+			if (t->collidingWithTower(pos)) 
+			{
+				// t->AddNumMinions();***************
+				t->NoOfMinions += 1;
 				return true;
 			}
 		}
-		/*for each (Tower* t in Team_1_towers){
-			if (t->collidingWithTower(pos)){
-				t->setDamage(1);
-			}
-		}*/
 	}
 }
 

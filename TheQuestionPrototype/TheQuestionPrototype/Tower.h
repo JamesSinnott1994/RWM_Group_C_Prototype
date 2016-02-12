@@ -22,6 +22,8 @@ public:
 	bool collidingWithTower(SDL_Rect pos);
 	int getTeam(){ return m_team; }
 
+	int NoOfMinions;
+
 private:
 	SDL_Texture* text;
 	SDL_Texture* healthBar;

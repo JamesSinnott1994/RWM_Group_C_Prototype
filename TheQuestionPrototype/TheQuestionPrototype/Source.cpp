@@ -129,13 +129,12 @@ int main() {
 							// Remove minion of team1 from team1 tower
 							if (TowerManager::GetInstance()->mouseClicked({ e.button.x, e.button.y }))
 							{
-								TowerManager::GetInstance()->TeamsOneMinions -= 1;
 								for each(Minion * minion in *MinionManager::GetInstance()->ReturnMinionsTeam1()) 
 								{
 									if (minion->InTower)
 									{
 										SDL_Rect temp = minion->getRect();
-										temp.x += 300;
+										temp.x += 200;
 										minion->setRect(temp);
 										minion->InTower = false;
 										break;
@@ -192,13 +191,12 @@ int main() {
 						// Remove minion of team2 from team2 tower
 						if (TowerManager::GetInstance()->KeyBoardClicked(mouse)) 
 						{
-							TowerManager::GetInstance()->TeamsTwoMinions -= 1;
 							for each(Minion * minion in *MinionManager::GetInstance()->ReturnMinionsTeam2()) 
 							{
 								if (minion->InTower) 
 								{
 									SDL_Rect temp = minion->getRect();
-									temp.x += 250;
+									temp.x += 200;
 									minion->setRect(temp);
 									minion->InTower = false;
 									break;
@@ -218,18 +216,22 @@ int main() {
 				// Checks if minions collide with turrets, if so they are put in
 				for each(Minion * minion in *MinionManager::GetInstance()->ReturnMinionsTeam1()) 
 				{
-					if (TowerManager::GetInstance()->collidingWithTower(minion->getRect(), 1) && !minion->InTower) 
+					if (!minion->InTower)
 					{
-						minion->InTower = true;
-						TowerManager::GetInstance()->TeamsOneMinions += 1;
+						if (TowerManager::GetInstance()->collidingWithTower(minion->getRect(), 1))
+						{
+							minion->InTower = true;
+						}
 					}
 				}
 				for each(Minion * minion in *MinionManager::GetInstance()->ReturnMinionsTeam2()) 
 				{
-					if (TowerManager::GetInstance()->collidingWithTower(minion->getRect(), 2) && !minion->InTower) 
+					if (!minion->InTower)
 					{
-						minion->InTower = true;
-						TowerManager::GetInstance()->TeamsTwoMinions += 1;
+						if (TowerManager::GetInstance()->collidingWithTower(minion->getRect(), 2))
+						{
+							minion->InTower = true;
+						}
 					}
 				}
 

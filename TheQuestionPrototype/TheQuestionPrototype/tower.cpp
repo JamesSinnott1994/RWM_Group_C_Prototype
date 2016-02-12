@@ -28,16 +28,18 @@ Tower::Tower(int x, int y , int team)
 		earthquakeProof = false;
 		last_mouse_clicked_time = SDL_GetTicks();
 		alive = true;
+
+		NoOfMinions = 0;
 }
 
 void Tower::Draw(int noOfMinions, int team)
 {
 	Renderer::GetInstance()->DrawImageNoOffset(&src, &dest, text, 0, &offset);
 
-	if (team == 1)
+	/*if (team == 1)
 		NoOfTeam1Minions = noOfMinions;
 	else
-		NoOfTeam2Minions = noOfMinions;
+		NoOfTeam2Minions = noOfMinions;*/
 	SDL_Rect src1, dest1;
 	src1 = { 0, 0, 300, 300 };
 	if (m_team == 2)
@@ -99,7 +101,7 @@ void Tower::Draw(int noOfMinions, int team)
 		rect.h = 20;
 
 		// Draw number of minions
-		for (int i = 0; i < noOfMinions; i++)
+		for (int i = 0; i < NoOfMinions; i++)
 		{
 			rect.x += 25;
 
@@ -196,11 +198,12 @@ bool Tower::mouseClicked(SDL_Point mouse, int noOfMinions)
 {
 	bool click = false;
 	// Remove minions
-		if (noOfMinions > 0
+		if (NoOfMinions > 0
 			&& mouse.x > rect.x && mouse.x < rect.x + rect.w
 			&& mouse.y > rect.y && mouse.y < rect.y + rect.h)
 		{
 			std::cout << "!!!!!!!!!!!!!!!!!!!!!!!!!!!" << std::endl;
+			NoOfMinions -= 1;
 			click = true;
 		}
 
