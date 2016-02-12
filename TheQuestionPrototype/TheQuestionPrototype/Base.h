@@ -27,6 +27,7 @@ private:
 
 public:
 	Base(SDL_Point, int);
+	Base();
 	~Base()
 	{
 		

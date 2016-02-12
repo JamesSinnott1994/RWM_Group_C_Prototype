@@ -46,16 +46,6 @@ int main() {
 			if (!Renderer::GetInstance()->Init(window, SCREEN_WIDTH, SCREEN_HEIGHT)) {
 				return 0;
 			}
-
-		//	MinionManager::GetInstance()->addMinion(300, 100, 1);
-		//	MinionManager::GetInstance()->addMinion(300, 300, 1);
-		//	MinionManager::GetInstance()->addMinion(300, 500, 1);	
-
-		//	MinionManager::GetInstance()->addMinion(700, 100, 2);
-		//	MinionManager::GetInstance()->addMinion(700, 300, 2);
-		//	MinionManager::GetInstance()->addMinion(700, 500, 2);
-
-
 			GoldManager::GetInstance()->initializeTTF();
 
 			TowerManager::GetInstance()->addTower(1, 474, 100);

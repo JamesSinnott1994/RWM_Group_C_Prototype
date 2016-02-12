@@ -22,6 +22,7 @@ void BaseManager::Init()
 {
 	team1 = new Base(SDL_Point{ 484, 0 }, 1);
 	team2 = new Base(SDL_Point{ 484, 553 }, 2);
+	background = new Base();
 }
 void BaseManager::Draw()
 {
@@ -30,7 +31,7 @@ void BaseManager::Draw()
 }
 void BaseManager::DrawBackground()
 {
-	team1->DrawBackground();
+	background->DrawBackground();
 }
 void BaseManager::Update(float time)
 {

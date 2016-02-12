@@ -10,6 +10,7 @@ private:
 
 	Base* team1;
 	Base* team2;
+	Base* background;
 
 	static bool instanceFlag;
 	static BaseManager* instance;
