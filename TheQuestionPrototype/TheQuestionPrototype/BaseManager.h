@@ -10,6 +10,7 @@ private:
 
 	Base* team1;
 	Base* team2;
+	Base* background;
 
 	static bool instanceFlag;
 	static BaseManager* instance;
@@ -25,6 +26,7 @@ public:
 	SDL_Rect getRect1();
 	SDL_Rect getRect2();
 	void Draw();
+	void DrawBackground();
 	void Update(float time);
 	void Init();
 };

@@ -13,6 +13,14 @@ Base::Base(SDL_Point pos, int team )
 	}
 }
 
+Base::Base()
+{
+	// Background image
+	src2 = { 0, 0, 600, 570 };
+	dest2 = { 0, 0, 1248, 704 };
+	text2 = loadTexture("grass1.png", Renderer::GetInstance()->Get_SDL_RENDERER());
+}
+
 void Base::Update() {
 	if (health <= 0){
 		std::cout << "Base" << m_team << " is dead!!!" << std::endl;
@@ -23,6 +31,11 @@ void Base::Draw()
 {
 	if (health > 0)
 		Renderer::GetInstance()->DrawImageNoOffset(&src, &dest, text, 0, &offset);
+}
+
+void Base::DrawBackground()
+{
+	Renderer::GetInstance()->DrawImageNoOffset(&src2, &dest2, text2, 0, &offset);
 }
 
 SDL_Texture* Base::loadTexture(std::string path, SDL_Renderer* gRenderer){
