@@ -12,9 +12,6 @@ public:
 	int x = 200, y = 200;
 
 	GameObject(InputComponent* input): input_(input) {}
-	//Instancize GameObject like so
-	//GameObject player = new GameObject(new PlayerInputComponent());	or
-	//GameObject aiPlayer = new GameObject(new DemoInputComponent())
 
 	void update(float time){
 		input_->update(*this);
