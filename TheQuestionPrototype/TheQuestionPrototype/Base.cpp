@@ -25,6 +25,16 @@ void Base::Draw()
 		Renderer::GetInstance()->DrawImageNoOffset(&src, &dest, text, 0, &offset);
 }
 
+void Base::DrawBackground()
+{
+	// Background image
+	SDL_Rect src2 = { 0, 0, 600, 570 };
+	SDL_Rect dest2 = { 0, 0, 1248, 704 };
+	SDL_Texture* text2 = loadTexture("grass1.png", Renderer::GetInstance()->Get_SDL_RENDERER());
+
+	Renderer::GetInstance()->DrawImageNoOffset(&src2, &dest2, text2, 0, &offset);
+}
+
 SDL_Texture* Base::loadTexture(std::string path, SDL_Renderer* gRenderer){
 	//The final texture
 	SDL_Texture* newTexture = NULL;

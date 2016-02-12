@@ -25,6 +25,7 @@ public:
 	SDL_Rect getRect1();
 	SDL_Rect getRect2();
 	void Draw();
+	void DrawBackground();
 	void Update(float time);
 	void Init();
 };

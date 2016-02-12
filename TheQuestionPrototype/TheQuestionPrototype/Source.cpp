@@ -2,6 +2,7 @@
 using namespace std;
 
 #include <SDL.h>
+#include <SDL_image.h>
 #undef main
 
 #include "Renderer.h"
@@ -18,7 +19,6 @@ using namespace std;
 //Screen dimension constants
 const int SCREEN_WIDTH = 1248;			//SDL
 const int SCREEN_HEIGHT = 704;			//SDL
-
 
 int main() {
 	//The window we'll be rendering to
@@ -222,6 +222,7 @@ int main() {
 
 				//draw
 				Renderer::GetInstance()->ClearRenderer();
+				BaseManager::GetInstance()->DrawBackground();
 				BaseManager::GetInstance()->Draw();
 				TowerManager::GetInstance()->Draw();
 				MinionManager::GetInstance()->Draw();

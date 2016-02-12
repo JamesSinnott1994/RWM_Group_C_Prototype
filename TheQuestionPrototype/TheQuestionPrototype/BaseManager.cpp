@@ -28,6 +28,10 @@ void BaseManager::Draw()
 	team1->Draw();
 	team2->Draw();
 }
+void BaseManager::DrawBackground()
+{
+	team1->DrawBackground();
+}
 void BaseManager::Update(float time)
 {
 	team1->Update();
