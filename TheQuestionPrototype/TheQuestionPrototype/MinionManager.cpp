@@ -51,10 +51,10 @@ void MinionManager::addMinion(int x, int y, int team)
 	
 }
 
-void MinionManager::Update(int mouseX, int mouseY, float t){
+void MinionManager::Update( float t){
 	for (std::list<Minion*>::iterator it = minions_Team1.begin(); it != minions_Team1.end();)
 	{
-		(*it)->Update(mouseX, mouseY, t);
+		(*it)->Update( t);
 		if ((*it)->isAlive())
 		{
 			it++;
@@ -66,7 +66,7 @@ void MinionManager::Update(int mouseX, int mouseY, float t){
 	}
 	for (std::list<Minion*>::iterator it = minions_Team2.begin(); it != minions_Team2.end();)
 	{
-		(*it)->Update(mouseX, mouseY, t);
+		(*it)->Update( t);
 		if ((*it)->isAlive())
 		{
 			it++;

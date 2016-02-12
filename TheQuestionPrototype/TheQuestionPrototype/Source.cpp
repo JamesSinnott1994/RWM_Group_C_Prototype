@@ -81,7 +81,7 @@ int main() {
 				current_time = SDL_GetTicks();
 				ftime = (current_time - old_time) / 1000.0f;// Seconds
 
-				MinionManager::GetInstance()->Update(x, y, ftime);
+				
 
 				while (SDL_PollEvent(&e) != 0) {
 					KeyBoardInput::GetInstance()->updateKeyboard(e);
@@ -206,6 +206,7 @@ int main() {
 				TowerManager::GetInstance()->Update(ftime);
 				playertwo::GetInstance()->Update(ftime);
 				BaseManager::GetInstance()->Update(ftime);
+				MinionManager::GetInstance()->Update( ftime);
 				//Put Minions into their turrets
 				for each(Minion * minion in *MinionManager::GetInstance()->ReturnMinionsTeam1()) {
 					if (TowerManager::GetInstance()->collidingWithTower(minion->getRect(), 1) && !minion->InTower) {

@@ -22,7 +22,7 @@ public:
 	static MinionManager* GetInstance();
 	void addMinion(int, int, int);
 	void addImage(SDL_Rect pRect, int src);
-	void Update(int mouseX, int mouseY, float t);
+	void Update( float t);
 	void SelectedMouse(int mouseX, int mouseY);
 	void SelectedKeyboard(int mouseX, int mouseY);
 	static const int REDTEAM = 0, BLUETEAM = 1;
