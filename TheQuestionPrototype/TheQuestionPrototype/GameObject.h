@@ -8,8 +8,8 @@
 
 class GameObject {
 public:
-	int velocityX, velocityY;
-	int x = 200, y = 200;
+	float velocityX, velocityY;
+	float x = 200, y = 200;
 
 	GameObject(InputComponent* input): input_(input) {}
 
